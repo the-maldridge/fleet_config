@@ -1,0 +1,9 @@
+---
+- hosts: fleet
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - xbps-repoconf
+    - void.network.dns
+    - mmc_drivers

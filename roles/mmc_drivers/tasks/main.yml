@@ -1,0 +1,8 @@
+---
+- name: Install 10-driver-mmc.conf
+  ansible.builtin.copy:
+    src: 10-driver-mmc.conf
+    dest: /etc/dracut.conf.d/10-driver-mmc.conf
+    owner: root
+    group: root
+    mode: 0644
