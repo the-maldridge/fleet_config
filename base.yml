@@ -7,3 +7,4 @@
     - xbps-repoconf
     - void.network.dns
     - mmc_drivers
+    - sddm

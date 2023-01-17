@@ -1,0 +1,19 @@
+---
+- name: Install Packages
+  community.general.xbps:
+    pkg:
+      - xorg
+      - sddm
+
+- name: Ensure Service - dbus
+  ansible.builtin.service:
+    name: dbus
+    state: started
+    enabled: true
+
+- name: Ensure Service - sddm
+  ansible.builtin.service:
+    name: sddm
+    state: started
+    enabled: true
+
