@@ -1,15 +1,15 @@
 [fleet]
-fleet00 ansible_host=192.168.16.38
-fleet01 ansible_host=192.168.16.56
-fleet02 ansible_host=192.168.16.51
-fleet03 ansible_host=192.168.16.61
-fleet04 ansible_host=192.168.16.26
-fleet05 ansible_host=192.168.16.54
-fleet06 ansible_host=192.168.16.20
-fleet07 ansible_host=192.168.16.18
-fleet08 ansible_host=192.168.16.6
-fleet09 ansible_host=192.168.16.32
-fleet10 ansible_host=192.168.16.21
-fleet11 ansible_host=192.168.16.5
-fleet12 ansible_host=192.168.16.7
-fleet13 ansible_host=192.168.16.19
+fleet00
+fleet01
+fleet02
+fleet03
+fleet04
+fleet05
+fleet06
+fleet07
+fleet08
+fleet09
+fleet10
+fleet11
+fleet12
+fleet13
