@@ -1,0 +1,37 @@
+---
+- name: Install Packages
+  community.general.xbps:
+    pkg:
+      - git
+    state: present
+
+- name: Create Theme Directory
+  ansible.builtin.file:
+    path: /usr/share/sddm/themes/omnigreeter
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Retrieve Theme
+  ansible.builtin.git:
+    repo: https://github.com/the-maldridge/omnigreeter.git
+    dest: /usr/share/sddm/themes/omnigreeter
+
+- name: Create /etc/sddm.conf.d
+  ansible.builtin.file:
+    path: /etc/sddm.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Configure Theme
+  ansible.builtin.copy:
+    src: theme.conf
+    dest: /etc/sddm.conf.d/
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - sddm

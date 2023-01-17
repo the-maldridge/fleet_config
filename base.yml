@@ -8,4 +8,5 @@
     - void.network.dns
     - mmc_drivers
     - sddm
+    - sddm_theme_omnigreeter
     - chrony
