@@ -1,0 +1,12 @@
+---
+- name: Retrieve Repo
+  ansible.builtin.git:
+    repo: https://github.com/the-maldridge/dotfiles.git
+    dest: /home/maldridge/.dotfiles
+  become_user: maldridge
+
+- name: Install Files
+  ansible.builtin.command:
+    cmd: ./dfm/dfm install
+    chdir: /home/maldridge/.dotfiles/
+  become_user: maldridge
