@@ -35,3 +35,21 @@
     mode: 0644
   notify:
     - sddm
+
+- name: Check if a background is available
+  ansible.builtin.stat:
+    path: assets/sddm_background.png
+  register: background
+  delegate_to: localhost
+
+- name: Install Background
+  ansible.builtin.copy:
+    src: assets/sddm_background.png
+    dest: /usr/share/sddm/themes/omnigreeter/background.png
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - background.stat.exists
+  notify:
+    - sddm
