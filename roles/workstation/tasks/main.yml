@@ -1,0 +1,36 @@
+---
+- name: Install Graphical Environments - i3
+  community.general.xbps:
+    pkg:
+      - i3
+      - i3status
+      - dmenu
+    state: present
+
+- name: Install Graphical Environments - XFCE
+  community.general.xbps:
+    pkg:
+      - xfce4
+    state: present
+
+- name: Install Common Packages
+  community.general.xbps:
+    pkg:
+      - emacs
+      - evince
+      - feh
+      - firefox
+      - flameshot
+      - guvcview
+      - htop
+      - mpv
+      - pavucontrol
+      - pulseaudio
+      - rxvt-unicode
+      - tmux
+      - tree
+      - urxvt-perls
+      - vinagre
+      - vlc
+      - x11vnc
+    state: present

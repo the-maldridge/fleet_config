@@ -4,7 +4,7 @@
   become_user: root
   become_method: sudo
   roles:
-    - xbps-repoconf
-    - void.network.dns
-    - mmc_drivers
-    - chrony
+    - sddm
+    - sddm_theme_omnigreeter
+    - maldridge_dots
+    - workstation
