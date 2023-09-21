@@ -3,12 +3,8 @@ ansible_hostname: "{{ inventory_hostname }}.dal.michaelwashere.net"
 
 network_output_policy: ACCEPT
 
-network_boot_hosts:
-  - name: mirrors.servercentral.com
-    addr: 204.93.249.148
-
-xbps_repository_address: mirrors.servercentral.com
-xbps_repository_main: "https://{{ xbps_repository_address }}/voidlinux/current/musl"
+xbps_repository_address: repo-fastly.voidlinux.org
+xbps_repository_main: "https://{{ xbps_repository_address }}/current/musl"
 xbps_repository_nonfree: "{{xbps_repository_main }}/nonfree"
 xbps_repository_port: 443
 
