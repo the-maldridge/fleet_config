@@ -1,4 +1,8 @@
-[fleet]
+[fleet:children]
+fleet_base
+fleet_media
+
+[fleet_base]
 fleet00
 fleet01
 fleet02
@@ -14,5 +18,6 @@ fleet11
 fleet12
 fleet13
 
+[fleet_media]
 fleet-media-a
 fleet-media-b
