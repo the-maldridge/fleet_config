@@ -16,6 +16,7 @@
 - name: Install Common Packages
   community.general.xbps:
     pkg:
+      - dumb_runtime_dir
       - emacs
       - evince
       - feh
@@ -25,12 +26,18 @@
       - htop
       - mpv
       - pavucontrol
-      - pulseaudio
+      - pipewire
       - rxvt-unicode
       - tmux
       - tree
       - urxvt-perls
       - vinagre
       - vlc
+      - wireplumber
       - x11vnc
     state: present
+
+- name: Remove i3 debug from logins
+  ansible.builtin.file:
+    path: /usr/share/xsessions/i3-with-shmlog.desktop
+    state: absent
