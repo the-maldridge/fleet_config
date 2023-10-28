@@ -1,5 +1,5 @@
 ---
-- hosts: fleet
+- hosts: all
   gather_facts: false
   become: yes
   become_user: root

@@ -1,0 +1,13 @@
+{
+    "cniVersion": "1.0.0",
+    "name": "{{item.name}}",
+    "plugins": [
+        {
+            "type": "macvlan",
+            "master": "{{item.parent}}",
+            "ipam": {
+                "type": "dhcp"
+            }
+        }
+    ]
+}

@@ -1,3 +1,9 @@
+[nomad:children]
+nomad_server
+
+[nomad_server]
+sneakyserv
+
 [fleet:children]
 fleet_base
 fleet_media

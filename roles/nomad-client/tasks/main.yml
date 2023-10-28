@@ -1,0 +1,23 @@
+---
+- name: Install Packages
+  xbps:
+    pkg: nomad-driver-podman
+    state: present
+
+- name: Install Client Config
+  template:
+    src: 20-client.hcl.j2
+    dest: /etc/nomad.d/20-client.hcl
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - nomad
+
+- name: Create any missing directories
+  file:
+    path: "{{item.path}}"
+    state: directory
+  with_items: "{{nomad_volumes|default([])}}"
+  loop_control:
+    label: "{{item.name}}"
