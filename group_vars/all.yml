@@ -1,5 +1,5 @@
 ---
-ansible_hostname: "{{ inventory_hostname }}.dal.michaelwashere.net"
+network_fqdn: "{{ inventory_hostname }}.sneaky.nonroutable.network"
 
 network_output_policy: ACCEPT
 
