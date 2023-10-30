@@ -1,0 +1,27 @@
+---
+- name: Install Packages
+  community.general.xbps:
+    pkg: unbound
+    state: present
+
+- name: Configure Unbound
+  ansible.builtin.template:
+    src: unbound.conf.j2
+    dest: /etc/unbound/unbound.conf
+    owner: root
+    group: root
+    mode: "0644"
+    validate: unbound-checkconf %s
+  notify: unbound
+  tags: [update_dns]
+
+- name: Generate Control Keys
+  ansible.builtin.command:
+    cmd: unbound-control-setup
+    creates: /etc/unbound/unbound_control.key
+
+- name: Enable Service
+  ansible.builtin.service:
+    name: unbound
+    state: started
+    enabled: true

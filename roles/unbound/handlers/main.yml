@@ -1,0 +1,4 @@
+---
+- name: unbound
+  ansible.builtin.command:
+    cmd: unbound-control reload
