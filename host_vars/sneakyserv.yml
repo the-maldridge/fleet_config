@@ -1,6 +1,8 @@
 ---
 ansible_host: 172.16.31.3
 
+network_input_policy: ACCEPT
+
 nomad_volumes:
   - name: pitman_redis
     path: /nomad/pidman_redis
