@@ -1,0 +1,12 @@
+---
+- name: wpa_supplicant.conf
+  ansible.builtin.assemble:
+    src: /etc/wpa_supplicant/conf.d/
+    dest: /etc/wpa_supplicant/wpa_supplicant.conf
+    owner: root
+    group: root
+    mode: "0640"
+  notify: wpa_supplicant
+
+- name: wpa_supplicant
+  ansible.builtin.command: wpa_cli reconfigure

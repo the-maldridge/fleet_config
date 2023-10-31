@@ -4,6 +4,7 @@
   become_user: root
   become_method: sudo
   roles:
+    - wpa_supplicant
     - sddm
     - sddm_theme_omnigreeter
     - maldridge_dots

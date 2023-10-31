@@ -1,0 +1,18 @@
+---
+- name: Add wifi network
+  hosts: fleet
+  become: true
+  become_user: root
+  become_method: sudo
+  gather_facts: false
+  vars_prompt:
+    - name: ssid
+      prompt: Network SSID
+      private: false
+    - name: psk
+      prompt: Network PSK
+  tasks:
+    - name: Add Network
+      ansible.builtin.include_role:
+        name: wpa_supplicant
+        tasks_from: network.yml

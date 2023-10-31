@@ -1,0 +1,16 @@
+---
+- name: Create /etc/wpa_supplicant/conf.d
+  ansible.builtin.file:
+    path: /etc/wpa_supplicant/conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Install Base Configuration
+  ansible.builtin.copy:
+    src: 05-base.conf
+    dest: /etc/wpa_supplicant/conf.d/
+    owner: root
+    group: root
+    mode: "0644"
