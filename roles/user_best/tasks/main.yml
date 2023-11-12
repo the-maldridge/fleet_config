@@ -1,0 +1,80 @@
+---
+- name: Install Graphical Environments - icewm
+  community.general.xbps:
+    pkg:
+      - icewm
+    state: present
+  tags: [install_best_user]
+
+- name: Create BEST User
+  ansible.builtin.user:
+    name: best
+    create_home: true
+    groups: audio
+    append: true
+  tags: [install_best_user]
+
+- name: Create icewm settings path
+  ansible.builtin.file:
+    path: "/home/best/.icewm"
+    state: directory
+    owner: best
+    group: best
+    mode: "0700"
+  tags: [configure_best_user]
+
+- name: Select Theme
+  ansible.builtin.copy:
+    content: |
+      Theme="Infadel2/default.theme"
+    dest: /home/best/.icewm/theme
+    owner: best
+    group: best
+    mode: "0644"
+  tags: [configure_best_user]
+
+- name: Install Wallpaper
+  ansible.builtin.copy:
+    src: "{{ best_user_wallpaper }}"
+    dest: /home/best/.{{ best_user_wallpaper|basename }}
+    owner: best
+    group: best
+    mode: "0644"
+  when: best_user_wallpaper is defined
+  tags: [configure_best_user]
+
+- name: Set Wallpaper
+  ansible.builtin.copy:
+    content: |
+      DesktopBackgroundCenter=1
+      DesktopBackgroundImage=/home/best/.{{ best_user_wallpaper|basename }}
+      DesktopBackgroundColor=#aaa
+    dest: /home/best/.icewm/preferences
+    owner: best
+    group: best
+    mode: "0644"
+  when: best_user_wallpaper is defined
+  tags: [configure_best_user]
+
+- name: Install Startup Script
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      caffeine &
+      pipewire &
+      pipewire-pulse &
+      wireplumber &
+    dest: /home/best/.icewm/startup
+    owner: best
+    group: best
+    mode: "0755"
+  tags: [configure_best_user]
+
+- name: Enable Autologin
+  ansible.builtin.copy:
+    src: autologin.conf
+    dest: /etc/sddm.conf.d/autologin.conf
+    owner: root
+    group: root
+    mode: "0644"
+  tags: [install_best_user]

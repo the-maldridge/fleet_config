@@ -7,15 +7,11 @@
       - dmenu
     state: present
 
-- name: Install Graphical Environments - XFCE
-  community.general.xbps:
-    pkg:
-      - xfce4
-    state: present
-
 - name: Install Common Packages
   community.general.xbps:
     pkg:
+      - arandr
+      - caffeine-ng
       - dumb_runtime_dir
       - emacs
       - evince
