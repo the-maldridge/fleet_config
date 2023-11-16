@@ -100,3 +100,13 @@ local_names:
     names: [fleet-media-a]
   - address: 172.16.31.71
     names: [fleet-media-b]
+
+  - address: 172.16.31.80
+    names: [printer]
+
+  - address: 172.16.31.90
+    names: [omnicast]
+  - address: 172.16.31.91
+    names: [cam1]
+  - address: 172.16.31.92
+    names: [cam2]
