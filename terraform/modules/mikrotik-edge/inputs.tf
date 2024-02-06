@@ -1,0 +1,46 @@
+variable "hostname" {
+  type        = string
+  default     = "Mikrotik"
+  description = "Device Hostname"
+}
+
+variable "subnet" {
+  type        = string
+  description = "Subnet in CIDR form that this router is responsible for"
+}
+
+variable "dns_servers" {
+  type        = list(string)
+  description = "DNS Servers to forward requests to"
+  default     = ["8.8.8.8", "8.8.4.4"]
+}
+
+variable "peer_address" {
+  type        = string
+  description = "Peer interface address"
+}
+
+variable "domain_name" {
+  type        = string
+  description = "Domain name for this router"
+}
+
+variable "ports" {
+  type        = map(set(string))
+  description = "Map of ports to assign to each network"
+}
+
+variable "additional_nat_subnets" {
+  type        = list(string)
+  description = "Additional IP ranges that should receive NAT services"
+  default     = []
+}
+
+variable "static_hosts" {
+  type = map(object({
+    mac  = string
+    addr = string
+  }))
+  description = "Map of static hosts"
+  default     = {}
+}
