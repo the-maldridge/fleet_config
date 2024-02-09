@@ -7,6 +7,13 @@ static_hosts = {
   sneakyserv = {
     mac  = "10:e7:c6:05:92:a2"
     addr = "172.16.31.3"
+
+    cname = [
+      "traefik",
+      "files",
+      "pitman",
+      "nomad",
+    ]
   }
 
   sneakynet-00 = {

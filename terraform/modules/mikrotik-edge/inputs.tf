@@ -38,8 +38,9 @@ variable "additional_nat_subnets" {
 
 variable "static_hosts" {
   type = map(object({
-    mac  = string
-    addr = string
+    mac   = string
+    addr  = string
+    cname = optional(set(string), [])
   }))
   description = "Map of static hosts"
   default     = {}
