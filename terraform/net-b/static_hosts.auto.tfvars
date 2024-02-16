@@ -280,4 +280,9 @@ static_hosts = {
     mac  = "1c:4d:70:7e:3e:ed"
     addr = "172.16.31.71"
   }
+
+  linksys = {
+    mac  = "e8:9f:80:fd:f9:b2"
+    addr = "172.16.31.101"
+  }
 }
