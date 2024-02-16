@@ -30,6 +30,7 @@ resource "routeros_ip_firewall_addr_list" "nat_sources" {
 
   list    = "nat_sources"
   address = each.value
+  comment = "NAT Source Pool"
 }
 
 resource "routeros_ip_firewall_filter" "accept_established" {
@@ -47,7 +48,6 @@ resource "routeros_ip_firewall_filter" "no_wan_bogons" {
   src_address_list = "bogons_v4"
   comment          = "deny-bogons-to-self"
   place_before     = routeros_ip_firewall_filter.default_drop.id
-  disabled         = true
 }
 
 resource "routeros_ip_firewall_filter" "no_invalid" {
@@ -65,18 +65,24 @@ resource "routeros_ip_firewall_filter" "accept_icmp" {
   place_before = routeros_ip_firewall_filter.default_drop.id
 }
 
+resource "routeros_ip_firewall_filter" "accept_peer" {
+  chain        = "input"
+  action       = "accept"
+  in_interface = routeros_interface_vlan.vlan["peer0"].name
+  place_before = routeros_ip_firewall_filter.default_drop.id
+}
+
 resource "routeros_ip_firewall_filter" "default_drop" {
   chain        = "input"
   action       = "drop"
   comment      = "default-deny"
-  in_interface = routeros_interface_vlan.vlan["lan0"].name
-  disabled     = true
+  in_interface = "!${routeros_interface_vlan.vlan["lan0"].name}"
 }
 
 resource "routeros_ip_firewall_nat" "srcnat" {
   chain            = "srcnat"
   action           = "masquerade"
   out_interface    = routeros_interface_vlan.vlan["wan0"].name
-  src_address_list = "internet_enabled"
+  src_address_list = "nat_sources"
   comment          = "nat-masquerade"
 }
