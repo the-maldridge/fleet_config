@@ -283,6 +283,13 @@ static_hosts = {
     addr = "172.16.31.71"
   }
 
+  wopr = {
+    mac  = "70:58:12:26:9a:b7"
+    addr = "172.16.31.91"
+
+    cname = ["gizmo"]
+  }
+
   linksys = {
     mac  = "e8:9f:80:fd:f9:b2"
     addr = "172.16.31.101"
