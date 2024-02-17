@@ -13,6 +13,8 @@ static_hosts = {
       "files",
       "pitman",
       "nomad",
+      "prometheus",
+      "grafana",
     ]
   }
 
