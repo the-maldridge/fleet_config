@@ -1,8 +1,0 @@
----
-- name: DNS
-  hosts: sneakyserv
-  become: true
-  become_user: root
-  become_method: sudo
-  roles:
-    - unbound
