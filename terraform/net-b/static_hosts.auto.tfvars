@@ -283,15 +283,18 @@ static_hosts = {
     addr = "172.16.31.71"
   }
 
-  wopr = {
-    mac  = "70:58:12:26:9a:b7"
-    addr = "172.16.31.91"
-
-    cname = ["gizmo"]
+  omnicast = {
+    mac  = "a0:36:bc:58:00:92"
+    addr = "172.16.31.90"
   }
 
-  linksys = {
-    mac  = "e8:9f:80:fd:f9:b2"
-    addr = "172.16.31.101"
+  light-cannon = {
+    mac  = "bc:c3:42:88:79:c4"
+    addr = "172.16.31.91"
+  }
+
+  droidcam1 = {
+    mac  = "e8:d8:7e:c2:fd:2b"
+    addr = "172.16.31.92"
   }
 }
