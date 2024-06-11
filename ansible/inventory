@@ -7,6 +7,7 @@ sneakyserv
 [fleet:children]
 fleet_base
 fleet_media
+fleet_annex
 
 [fleet_base]
 fleet00
@@ -23,6 +24,9 @@ fleet10
 fleet11
 fleet12
 fleet13
+
+[fleet_annex]
+fleet[14:17]
 
 [fleet_media]
 fleet-media-a
