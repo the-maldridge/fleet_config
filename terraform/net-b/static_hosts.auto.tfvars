@@ -15,6 +15,7 @@ static_hosts = {
       "nomad",
       "prometheus",
       "grafana",
+      "sneakynet-docs",
     ]
   }
 
@@ -271,6 +272,26 @@ static_hosts = {
   fleet13 = {
     mac  = "c8:21:58:0d:74:56"
     addr = "172.16.31.63"
+  }
+
+  fleet14 = {
+    mac  = "5c:5f:67:5d:76:fe"
+    addr = "172.16.31.64"
+  }
+
+  fleet15 = {
+    mac  = "5c:5f:67:48:7a:c4"
+    addr = "172.16.31.65"
+  }
+
+  fleet16 = {
+    mac  = "e4:42:a6:7b:07:28"
+    addr = "172.16.31.66"
+  }
+
+  fleet17 = {
+    mac  = "e4:42:a6:72:e2:cd"
+    addr = "172.16.31.67"
   }
 
   fleet-media-a = {
