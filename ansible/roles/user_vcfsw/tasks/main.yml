@@ -1,0 +1,149 @@
+---
+- name: Install Graphical Environments - icewm
+  community.general.xbps:
+    pkg:
+      - icewm
+    state: present
+  tags: [install_vcfsw_user]
+
+- name: Install Additional Packages
+  community.general.xbps:
+    pkg:
+      - kicad
+      - kicad-footprints
+      - kicad-library
+      - kicad-symbols
+      - freerouting
+      - dosbox
+    state: present
+  tags: [install_vcfsw_user, install_vcfsw_programs]
+
+- name: Create VCFSW User
+  ansible.builtin.user:
+    name: vcfsw
+    create_home: true
+    groups: audio
+    append: true
+  tags: [install_vcfsw_user]
+
+- name: Create icewm settings path
+  ansible.builtin.file:
+    path: "/home/vcfsw/.icewm"
+    state: directory
+    owner: vcfsw
+    group: vcfsw
+    mode: "0700"
+  tags: [configure_vcfsw_user]
+
+- name: Select Theme
+  ansible.builtin.copy:
+    content: |
+      Theme="Infadel2/default.theme"
+    dest: /home/vcfsw/.icewm/theme
+    owner: vcfsw
+    group: vcfsw
+    mode: "0644"
+  tags: [configure_vcfsw_user]
+
+- name: Install Wallpaper
+  ansible.builtin.copy:
+    src: "{{ vcfsw_user_wallpaper }}"
+    dest: /home/vcfsw/.{{ vcfsw_user_wallpaper|basename }}
+    owner: vcfsw
+    group: vcfsw
+    mode: "0644"
+  when: vcfsw_user_wallpaper is defined
+  tags: [configure_vcfsw_user]
+
+- name: Set Wallpaper
+  ansible.builtin.copy:
+    content: |
+      DesktopBackgroundCenter=1
+      DesktopBackgroundImage=/home/vcfsw/.{{ vcfsw_user_wallpaper|basename }}
+      DesktopBackgroundColor=#000
+    dest: /home/vcfsw/.icewm/preferences
+    owner: vcfsw
+    group: vcfsw
+    mode: "0644"
+  when: vcfsw_user_wallpaper is defined
+  tags: [configure_vcfsw_user]
+
+- name: Install Startup Script
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      caffeine &
+      pipewire &
+      pipewire-pulse &
+      wireplumber &
+    dest: /home/vcfsw/.icewm/startup
+    owner: vcfsw
+    group: vcfsw
+    mode: "0755"
+  tags: [configure_vcfsw_user]
+
+
+- name: Install QBASIC
+  ansible.builtin.file:
+    path: /home/vcfsw/drive_c/DOS
+    state: directory
+    owner: vcfsw
+    group: vcfsw
+    mode: "0755"
+  tags: [configure_vcfsw_qbasic]
+
+- name: Install QBASIC
+  ansible.builtin.copy:
+    src: assets/qbasic.{{ item }}
+    dest: /home/vcfsw/drive_c/DOS/qbasic.{{ item }}
+    owner: vcfsw
+    group: vcfsw
+    mode: "0644"
+  loop_control:
+    label: "qbasic.{{ item }}"
+  loop:
+    - exe
+    - hlp
+  tags: [configure_vcfsw_qbasic]
+
+- name: Install QBASIC (Configure DOSBox)
+  ansible.builtin.copy:
+    content: |
+      [sdl]
+      output = opengl
+      windowresolution = 1024x768
+    dest: /home/vcfsw/drive_c/dosbox.conf
+    owner: vcfsw
+    group: vcfsw
+    mode: "0644"
+  tags: [configure_vcfsw_qbasic]
+
+- name: Install QBASIC (Desktop File)
+  ansible.builtin.file:
+    path: /home/vcfsw/.local/share/applications
+    state: directory
+    owner: vcfsw
+    group: vcfsw
+    mode: "0755"
+  tags: [configure_vcfsw_qbasic]
+
+- name: Install QBASIC (Script File)
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      cd drive_c
+      dosbox -c "MOUNT C ." -c "SET PATH=Z:;C:\DOS;" -c qbasic.exe
+    dest: /home/vcfsw/qbasic.sh
+    owner: root
+    group: root
+    mode: "0755"
+  tags: [configure_vcfsw_qbasic]
+
+- name: Enable Autologin
+  ansible.builtin.copy:
+    src: autologin.conf
+    dest: /etc/sddm.conf.d/autologin.conf
+    owner: root
+    group: root
+    mode: "0644"
+  tags: [install_vcfsw_user]
