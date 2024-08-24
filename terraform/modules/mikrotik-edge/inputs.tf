@@ -20,6 +20,11 @@ variable "peer_address" {
   description = "Peer interface address"
 }
 
+variable "router_id" {
+  type        = string
+  description = "BGP Router ID"
+}
+
 variable "domain_name" {
   type        = string
   description = "Domain name for this router"

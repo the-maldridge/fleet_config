@@ -4,7 +4,7 @@ resource "routeros_system_identity" "identity" {
 
 resource "routeros_ip_dns" "dns" {
   allow_remote_requests = true
-  servers               = join(",", var.dns_servers)
+  servers               = var.dns_servers
 }
 
 resource "routeros_ip_service" "disabled" {

@@ -9,6 +9,7 @@ resource "routeros_interface_vlan" "vlan" {
     lan0  = { id = 10, description = "Local Network" }
     wan0  = { id = 20, description = "Upstream Networks" }
     peer0 = { id = 101, description = "Peer Networks" }
+    gate0 = { id = 112, description = "Stargate" }
   }
 
   interface = routeros_interface_bridge.br0.name
@@ -19,7 +20,7 @@ resource "routeros_interface_vlan" "vlan" {
 
 resource "routeros_interface_bridge_vlan" "br_vlan" {
   bridge   = routeros_interface_bridge.br0.name
-  vlan_ids = join(",", [for s in sort(formatlist("%03d", [for vlan in routeros_interface_vlan.vlan : vlan.vlan_id])) : tonumber(s)])
+  vlan_ids = [for s in sort(formatlist("%03d", [for vlan in routeros_interface_vlan.vlan : vlan.vlan_id])) : tonumber(s)]
   tagged   = [routeros_interface_bridge.br0.name]
   comment  = "Bridge Networks"
 }
@@ -41,4 +42,9 @@ resource "routeros_ip_address" "lan" {
 resource "routeros_ip_address" "peer" {
   address   = var.peer_address
   interface = routeros_interface_vlan.vlan["peer0"].name
+}
+
+resource "routeros_ip_address" "gate" {
+  address   = "169.254.250.2/30"
+  interface = routeros_interface_vlan.vlan["gate0"].name
 }

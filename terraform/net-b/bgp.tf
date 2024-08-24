@@ -1,9 +1,3 @@
-resource "routeros_ip_firewall_addr_list" "local" {
-  list    = "local"
-  address = "172.16.31.0/24"
-  comment = "Local Network"
-}
-
 resource "routeros_routing_bgp_connection" "docked" {
   as = 64582
 

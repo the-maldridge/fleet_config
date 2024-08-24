@@ -17,7 +17,7 @@ resource "routeros_ip_dhcp_server_network" "network" {
   comment    = "Options for LAN"
   gateway    = cidrhost(var.subnet, 1)
   domain     = var.domain_name
-  dns_server = cidrhost(var.subnet, 1)
+  dns_server = [cidrhost(var.subnet, 1)]
 }
 
 resource "routeros_ip_dhcp_server_lease" "lease" {

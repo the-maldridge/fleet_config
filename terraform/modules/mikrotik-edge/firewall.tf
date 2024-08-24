@@ -72,6 +72,13 @@ resource "routeros_ip_firewall_filter" "accept_peer" {
   place_before = routeros_ip_firewall_filter.default_drop.id
 }
 
+resource "routeros_ip_firewall_filter" "accept_gate" {
+  chain        = "input"
+  action       = "accept"
+  in_interface = routeros_interface_vlan.vlan["gate0"].name
+  place_before = routeros_ip_firewall_filter.default_drop.id
+}
+
 resource "routeros_ip_firewall_filter" "default_drop" {
   chain        = "input"
   action       = "drop"
