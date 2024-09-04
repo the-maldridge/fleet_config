@@ -7,6 +7,7 @@ resource "routeros_routing_bgp_connection" "docked" {
   router_id      = "169.254.255.5"
   hold_time      = "30s"
   keepalive_time = "10s"
+  nexthop_choice = "force-self"
 
   local {
     role    = "ebgp"
@@ -19,7 +20,7 @@ resource "routeros_routing_bgp_connection" "docked" {
   }
 
   output {
-    redistribute = "connected"
+    redistribute = "connected,bgp"
     network      = "local"
   }
 }
@@ -37,6 +38,7 @@ resource "routeros_routing_bgp_connection" "internal" {
 
   connect = true
   listen  = true
+  nexthop_choice = "force-self"
 
   cluster_id = "169.254.255.1"
   router_id  = "169.254.255.5"
@@ -55,7 +57,7 @@ resource "routeros_routing_bgp_connection" "internal" {
 
   output {
     default_originate = "if-installed"
-    redistribute      = "connected"
+    redistribute      = "connected,bgp"
     network           = "local"
   }
 }

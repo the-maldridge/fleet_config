@@ -13,6 +13,7 @@ resource "routeros_routing_bgp_connection" "stargate" {
   router_id      = var.router_id
   hold_time      = "30s"
   keepalive_time = "10s"
+  nexthop_choice = "force-self"
 
   local {
     role    = "ebgp"
@@ -26,7 +27,7 @@ resource "routeros_routing_bgp_connection" "stargate" {
 
   output {
     default_originate = "if-installed"
-    redistribute      = "connected"
+    redistribute      = "connected,bgp"
     network           = "local"
   }
 }
