@@ -318,4 +318,14 @@ static_hosts = {
     mac  = "e8:d8:7e:c2:fd:2b"
     addr = "172.16.31.92"
   }
+
+  cam1 = {
+    mac  = "ec:71:db:dc:0f:be"
+    addr = "172.16.31.93"
+  }
+
+  cam2 = {
+    mac  = "ec:71:db:5f:79:e8"
+    addr = "172.16.31.94"
+  }
 }
