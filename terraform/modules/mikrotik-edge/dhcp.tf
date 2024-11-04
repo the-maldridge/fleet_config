@@ -10,6 +10,7 @@ resource "routeros_ip_dhcp_server" "server" {
   address_pool       = routeros_ip_pool.pool.name
   comment            = "LAN Default DHCP Server"
   conflict_detection = true
+  lease_time         = "1h"
 }
 
 resource "routeros_ip_dhcp_server_network" "network" {
