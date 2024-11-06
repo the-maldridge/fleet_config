@@ -5,7 +5,7 @@ network_input_policy: ACCEPT
 
 nomad_volumes:
   - name: pitman_redis
-    path: /nomad/pidman_redis
+    path: /nomad/pitman_redis
     read_only: false
   - name: filespace_cfg
     path: /nomad/filespace_cfg
