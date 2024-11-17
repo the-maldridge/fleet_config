@@ -36,8 +36,8 @@ resource "routeros_routing_bgp_connection" "internal" {
   as   = 64582
   name = each.key
 
-  connect = true
-  listen  = true
+  connect        = true
+  listen         = true
   nexthop_choice = "force-self"
 
   cluster_id = "169.254.255.1"

@@ -9,8 +9,7 @@ module "router" {
   domain_name  = "sneaky.nonroutable.network"
 
   ports = {
-    dhd  = formatlist("ether%d", [10])
-    lan  = formatlist("ether%d", [6, 7, 8, 9])
+    lan  = formatlist("ether%d", [6, 7, 8, 9, 10])
     wan  = formatlist("ether%d", [1])
     peer = flatten(["sfp1", formatlist("ether%d", [2, 3, 4, 5])])
   }

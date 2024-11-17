@@ -19,6 +19,11 @@ static_hosts = {
     ]
   }
 
+  optimux = {
+    addr = "172.16.31.4"
+    mac  = "48:a9:8a:ad:2b:2c"
+  }
+
   sneakynet-00 = {
     addr = "172.16.31.10"
     mac  = "18:64:72:c7:a7:0a"
