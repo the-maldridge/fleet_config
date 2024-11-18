@@ -8,6 +8,7 @@ resource "routeros_interface_vlan" "vlan" {
   for_each = {
     lan0  = { id = 10, description = "Local Network" }
     wan0  = { id = 20, description = "Upstream Networks" }
+    mgmt0 = { id = 30, description = "Management Network" }
     peer0 = { id = 101, description = "Peer Networks" }
     gate0 = { id = 112, description = "Stargate" }
   }
@@ -34,9 +35,11 @@ resource "routeros_interface_bridge_port" "vlan" {
   comment   = each.value.comment
 }
 
-resource "routeros_ip_address" "lan" {
-  address   = format("%s/%d", cidrhost(var.subnet, 1), split("/", var.subnet)[1])
-  interface = routeros_interface_vlan.vlan["lan0"].name
+resource "routeros_ip_address" "local" {
+  for_each = var.subnets
+
+  address   = format("%s/%d", cidrhost(each.value, 1), split("/", each.value)[1])
+  interface = routeros_interface_vlan.vlan[format("%s0", each.key)].name
 }
 
 resource "routeros_ip_address" "peer" {

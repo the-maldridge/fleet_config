@@ -26,7 +26,7 @@ resource "routeros_ip_firewall_addr_list" "bogons_v4" {
 }
 
 resource "routeros_ip_firewall_addr_list" "nat_sources" {
-  for_each = toset(flatten([var.subnet, var.additional_nat_subnets]))
+  for_each = toset(flatten([values(var.subnets), var.additional_nat_subnets]))
 
   list    = "nat_sources"
   address = each.value
@@ -65,6 +65,13 @@ resource "routeros_ip_firewall_filter" "accept_icmp" {
   place_before = routeros_ip_firewall_filter.default_drop.id
 }
 
+resource "routeros_ip_firewall_filter" "accept_mgmt" {
+  chain        = "input"
+  action       = "accept"
+  in_interface = routeros_interface_vlan.vlan["mgmt0"].name
+  place_before = routeros_ip_firewall_filter.default_drop.id
+}
+
 resource "routeros_ip_firewall_filter" "accept_peer" {
   chain        = "input"
   action       = "accept"
@@ -92,4 +99,11 @@ resource "routeros_ip_firewall_nat" "srcnat" {
   out_interface    = routeros_interface_vlan.vlan["wan0"].name
   src_address_list = "nat_sources"
   comment          = "nat-masquerade"
+}
+
+resource "routeros_ip_firewall_filter" "block_lan_to_mgmt" {
+  chain         = "forward"
+  action        = "drop"
+  in_interface  = routeros_interface_vlan.vlan["lan0"].name
+  out_interface = routeros_interface_vlan.vlan["mgmt0"].name
 }

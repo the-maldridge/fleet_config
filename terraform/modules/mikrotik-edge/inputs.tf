@@ -4,9 +4,9 @@ variable "hostname" {
   description = "Device Hostname"
 }
 
-variable "subnet" {
-  type        = string
-  description = "Subnet in CIDR form that this router is responsible for"
+variable "subnets" {
+  type        = map(any)
+  description = "Map of network to subnet"
 }
 
 variable "dns_servers" {

@@ -1,7 +1,9 @@
 resource "routeros_ip_firewall_addr_list" "local" {
+  for_each = var.subnets
+
   list    = "local"
-  address = var.subnet
-  comment = "Local Network"
+  address = each.value
+  comment = "Local Networks"
 }
 
 resource "routeros_routing_bgp_connection" "stargate" {
