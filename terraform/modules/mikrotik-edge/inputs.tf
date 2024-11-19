@@ -35,6 +35,12 @@ variable "ports" {
   description = "Map of ports to assign to each network"
 }
 
+variable "trunks" {
+  type        = set(string)
+  description = "List of ports that should act as VLAN trunks"
+  default     = []
+}
+
 variable "additional_nat_subnets" {
   type        = list(string)
   description = "Additional IP ranges that should receive NAT services"

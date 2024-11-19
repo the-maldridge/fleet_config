@@ -12,11 +12,13 @@ module "router" {
   domain_name  = "sneaky.nonroutable.network"
 
   ports = {
-    lan  = formatlist("ether%d", [6, 7, 8, 9, 10])
+    lan  = formatlist("ether%d", [6, 7, 8])
     wan  = formatlist("ether%d", [1])
     peer = formatlist("ether%d", [2, 3, 4])
     mgmt = formatlist("ether%d", [5])
   }
+
+  trunks = ["ether9"]
 
   additional_nat_subnets = [
     "172.24.0.0/23",

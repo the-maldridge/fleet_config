@@ -33,7 +33,7 @@ resource "routeros_ip_dhcp_server_lease" "lease" {
   address     = each.value.addr
   mac_address = each.value.mac
   comment     = each.key
-  server      = routeros_ip_dhcp_server.server[lookup(each.value, "server", "lan")].name
+  server      = routeros_ip_dhcp_server.server[lookup(each.value, "server", "mgmt")].name
 }
 
 resource "routeros_ip_dns_record" "static_hosts" {
