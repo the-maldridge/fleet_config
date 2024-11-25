@@ -41,6 +41,12 @@ variable "trunks" {
   default     = []
 }
 
+variable "bonds" {
+  type        = map(set(string))
+  description = "List of sets of ports that should be part of a bond"
+  default     = {}
+}
+
 variable "additional_nat_subnets" {
   type        = list(string)
   description = "Additional IP ranges that should receive NAT services"

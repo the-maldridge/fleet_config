@@ -22,7 +22,7 @@ resource "routeros_interface_vlan" "vlan" {
 resource "routeros_interface_bridge_vlan" "br_vlan" {
   bridge   = routeros_interface_bridge.br0.name
   vlan_ids = [for s in sort(formatlist("%03d", [for vlan in routeros_interface_vlan.vlan : vlan.vlan_id])) : tonumber(s)]
-  tagged   = flatten([routeros_interface_bridge.br0.name, var.trunks])
+  tagged   = flatten([routeros_interface_bridge.br0.name, var.trunks, keys(var.bonds)])
   comment  = "Bridge Networks"
 }
 

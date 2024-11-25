@@ -15,5 +15,12 @@ module "router" {
     mgmt = ["ether1"]
     peer = ["sfp-sfpplus1"]
   }
+
+  bonds = {
+    bond0 = formatlist("sfp-sfpplus%d", [11, 12])
+  }
+
   additional_nat_subnets = []
+
+  static_hosts = var.static_hosts
 }
