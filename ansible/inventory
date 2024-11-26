@@ -3,6 +3,7 @@ nomad_server
 
 [nomad_server]
 sneakyserv
+sneakypizza
 
 [fleet:children]
 fleet_base
