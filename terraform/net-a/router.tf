@@ -13,14 +13,20 @@ module "router" {
 
   ports = {
     mgmt = ["ether1"]
-    peer = ["sfp-sfpplus1"]
+    wan  = ["sfp-sfpplus1"]
+    peer = ["sfp-sfpplus2"]
   }
+
+  trunks = ["sfp-sfpplus10"]
 
   bonds = {
     bond0 = formatlist("sfp-sfpplus%d", [11, 12])
   }
 
-  additional_nat_subnets = []
+  additional_nat_subnets = [
+    "100.64.0.0/24",
+    "169.254.255.0/24",
+  ]
 
   static_hosts = var.static_hosts
 }
