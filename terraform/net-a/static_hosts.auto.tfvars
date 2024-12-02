@@ -96,4 +96,9 @@ static_hosts = {
     addr = "172.16.34.102"
     mac  = "1C:83:41:31:91:F2"
   }
+
+  matchclock = {
+    addr = "172.16.34.103"
+    mac = "F4:4D:30:6F:70:C9"
+  }
 }
