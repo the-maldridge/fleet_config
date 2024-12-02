@@ -30,6 +30,14 @@ variable "domain_name" {
   description = "Domain name for this router"
 }
 
+variable "ntp_servers" {
+  type = set(string)
+  description = "Set of NTP servers to contact for accurate time."
+
+  # This list is the result of a one-time resolve of pool.ntp.org
+  default = ["45.79.13.206", "149.28.61.105", "148.113.194.34", "45.84.199.136"]
+}
+
 variable "ports" {
   type        = map(set(string))
   description = "Map of ports to assign to each network"

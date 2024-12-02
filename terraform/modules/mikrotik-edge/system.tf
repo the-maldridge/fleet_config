@@ -22,15 +22,8 @@ resource "routeros_ip_service" "disabled" {
   disabled = true
 }
 
-# resource "routeros_ip_service" "ssh" {
-#   numbers = "ssh"
-#   port    = 22
-#   address = var.subnet
-# }
-
-# resource "routeros_ip_service" "www_ssl" {
-#   numbers     = "www-ssl"
-#   port        = 443
-#   address     = var.subnet
-#   certificate = "self"
-# }
+resource "routeros_system_ntp_client" "client" {
+  enabled = true
+  mode    = "unicast"
+  servers = var.ntp_servers
+}
