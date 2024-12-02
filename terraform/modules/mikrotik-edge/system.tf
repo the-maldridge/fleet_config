@@ -27,3 +27,9 @@ resource "routeros_system_ntp_client" "client" {
   mode    = "unicast"
   servers = var.ntp_servers
 }
+
+resource "routeros_system_ntp_server" "server" {
+  enabled             = true
+  use_local_clock     = true
+  local_clock_stratum = 5
+}
