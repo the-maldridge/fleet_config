@@ -1,8 +1,6 @@
 resource "routeros_ip_firewall_addr_list" "local" {
-  for_each = var.subnets
-
   list    = "local"
-  address = each.value
+  address = var.subnets["mgmt"]
   comment = "Local Networks"
 }
 
