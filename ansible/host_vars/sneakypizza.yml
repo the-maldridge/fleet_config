@@ -11,3 +11,11 @@ xbps_repository_main: https://{{xbps_repository_address}}/current/musl
 xbps_repository_nonfree: https://{{xbps_repository_address}}/current/musl/nonfree
 xbps_repository_address: repo-fastly.voidlinux.org
 xbps_repository_port: 443
+
+nomad_volumes:
+  - name: filespace_cfg
+    path: /nomad/filespace_cfg
+    read_only: false
+  - name: filespace_data
+    path: /nomad/filespace_data
+    read_only: false
