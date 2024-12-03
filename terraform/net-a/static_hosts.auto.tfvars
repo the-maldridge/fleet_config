@@ -12,6 +12,11 @@ static_hosts = {
     addr = "172.16.34.4"
   }
 
+  winbuild = {
+    mac  = "FC:3F:DB:02:D8:DB"
+    addr = "172.16.34.8"
+  }
+
   netgear-16p1s = {
     mac  = "34:98:B5:95:0F:49"
     addr = "172.16.34.9"
