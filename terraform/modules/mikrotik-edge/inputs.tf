@@ -31,7 +31,7 @@ variable "domain_name" {
 }
 
 variable "ntp_servers" {
-  type = set(string)
+  type        = set(string)
   description = "Set of NTP servers to contact for accurate time."
 
   # This list is the result of a one-time resolve of pool.ntp.org

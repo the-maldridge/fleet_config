@@ -86,11 +86,19 @@ resource "routeros_ip_firewall_filter" "accept_gate" {
   place_before = routeros_ip_firewall_filter.default_drop.id
 }
 
-resource "routeros_ip_firewall_filter" "default_drop" {
+resource "routeros_ip_firewall_filter" "lan_dns" {
   chain        = "input"
-  action       = "drop"
-  comment      = "default-deny"
-  in_interface = "!${routeros_interface_vlan.vlan["lan0"].name}"
+  action       = "accept"
+  protocol     = "udp"
+  port         = "53"
+  in_interface = routeros_interface_vlan.vlan["lan0"].name
+  place_before = routeros_ip_firewall_filter.default_drop.id
+}
+
+resource "routeros_ip_firewall_filter" "default_drop" {
+  chain   = "input"
+  action  = "drop"
+  comment = "default-deny"
 }
 
 resource "routeros_ip_firewall_nat" "srcnat" {
@@ -99,6 +107,15 @@ resource "routeros_ip_firewall_nat" "srcnat" {
   out_interface    = routeros_interface_vlan.vlan["wan0"].name
   src_address_list = "nat_sources"
   comment          = "nat-masquerade"
+}
+
+resource "routeros_ip_firewall_filter" "fasttrack_forward" {
+  chain            = "forward"
+  action           = "fasttrack-connection"
+  connection_state = "established,related"
+  comment          = "forward-fasttracked"
+  hw_offload       = true
+  place_before     = routeros_ip_firewall_filter.block_lan_to_mgmt.id
 }
 
 resource "routeros_ip_firewall_filter" "block_lan_to_mgmt" {
