@@ -87,6 +87,11 @@ static_hosts = {
     addr = "172.16.31.92"
   }
 
+  cam3 = {
+    mac  = "EC:71:DB:82:BA:AF"
+    addr = "172.16.34.93"
+  }
+
   game-a = {
     addr = "172.16.34.100"
     mac  = "58:47:CA:70:18:B7"
