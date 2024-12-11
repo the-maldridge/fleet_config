@@ -6,6 +6,11 @@ static_hosts = {
   sneakypizza = {
     mac  = "00:25:90:f4:92:a0"
     addr = "172.16.34.3"
+    cname = [
+      "traefik",
+      "files",
+      "pcsmpages",
+    ]
   }
   sneaky-oob = {
     mac  = "00:25:90:f6:b4:82"
@@ -74,17 +79,17 @@ static_hosts = {
 
   omnicast = {
     mac  = "a0:36:bc:58:00:92"
-    addr = "172.16.31.90"
+    addr = "172.16.34.90"
   }
 
   cam1 = {
     mac  = "ec:71:db:dc:0f:be"
-    addr = "172.16.31.91"
+    addr = "172.16.34.91"
   }
 
   cam2 = {
     mac  = "ec:71:db:5f:79:e8"
-    addr = "172.16.31.92"
+    addr = "172.16.34.92"
   }
 
   cam3 = {

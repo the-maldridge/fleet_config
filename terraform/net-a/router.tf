@@ -12,7 +12,7 @@ module "router" {
   domain_name  = "sneaky.nonroutable.network"
 
   ports = {
-    mgmt = ["ether1"]
+    mgmt = ["ether1", "sfp-sfpplus9"]
     wan  = ["sfp-sfpplus1"]
     peer = ["sfp-sfpplus2"]
   }
