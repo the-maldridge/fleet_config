@@ -18,7 +18,7 @@ module "router" {
     mgmt = formatlist("ether%d", [5])
   }
 
-  trunks = ["ether8", "ether9", "ether10"]
+  trunks = formatlist("ether%s", [8, 9, 10])
 
   additional_nat_subnets = [
     "172.24.0.0/23",
