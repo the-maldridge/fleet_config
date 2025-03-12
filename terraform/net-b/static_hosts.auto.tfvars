@@ -320,7 +320,7 @@ static_hosts = {
   }
 
   droidcam1 = {
-    mac  = "e8:d8:7e:c2:fd:2b"
+    mac  = "fc:93:6b:8a:c6:36"
     addr = "172.16.31.92"
   }
 
