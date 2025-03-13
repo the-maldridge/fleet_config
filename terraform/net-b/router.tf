@@ -11,6 +11,8 @@ module "router" {
   router_id    = "169.255.255.5"
   domain_name  = "sneaky.nonroutable.network"
 
+  use_site_dns = true
+
   ports = {
     lan  = formatlist("ether%d", [6, 7])
     wan  = formatlist("ether%d", [1])

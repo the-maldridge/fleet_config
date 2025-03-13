@@ -9,6 +9,12 @@ variable "subnets" {
   description = "Map of network to subnet"
 }
 
+variable "use_site_dns" {
+  type        = bool
+  description = "Use DNS from WAN DHCP"
+  default     = false
+}
+
 variable "dns_servers" {
   type        = list(string)
   description = "DNS Servers to forward requests to"
