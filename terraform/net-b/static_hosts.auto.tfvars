@@ -1,6 +1,6 @@
 static_hosts = {
   switch0 = {
-    mac  = "00:87:31:43:E6:02"
+    mac  = "60:9c:9f:e7:3d:c0"
     addr = "172.16.31.2"
   }
 
