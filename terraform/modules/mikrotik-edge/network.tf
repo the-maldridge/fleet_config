@@ -6,11 +6,12 @@ resource "routeros_interface_bridge" "br0" {
 
 resource "routeros_interface_vlan" "vlan" {
   for_each = {
-    lan0  = { id = 10, description = "Local Network" }
-    wan0  = { id = 20, description = "Upstream Networks" }
-    mgmt0 = { id = 30, description = "Management Network" }
-    peer0 = { id = 101, description = "Peer Networks" }
-    gate0 = { id = 112, description = "Stargate" }
+    lan0   = { id = 10, description = "Local Network" }
+    trust0 = { id = 15, description = "Trusted Network" }
+    wan0   = { id = 20, description = "Upstream Networks" }
+    mgmt0  = { id = 30, description = "Management Network" }
+    peer0  = { id = 101, description = "Peer Networks" }
+    gate0  = { id = 112, description = "Stargate" }
   }
 
   interface = routeros_interface_bridge.br0.name

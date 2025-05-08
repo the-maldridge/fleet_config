@@ -95,6 +95,15 @@ resource "routeros_ip_firewall_filter" "lan_dns" {
   place_before = routeros_ip_firewall_filter.default_drop.id
 }
 
+resource "routeros_ip_firewall_filter" "trust_dns" {
+  chain        = "input"
+  action       = "accept"
+  protocol     = "udp"
+  port         = "53"
+  in_interface = routeros_interface_vlan.vlan["trust0"].name
+  place_before = routeros_ip_firewall_filter.default_drop.id
+}
+
 resource "routeros_ip_firewall_filter" "default_drop" {
   chain   = "input"
   action  = "drop"

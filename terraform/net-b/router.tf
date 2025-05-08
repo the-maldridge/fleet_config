@@ -3,8 +3,9 @@ module "router" {
 
   hostname = "edge0"
   subnets = {
-    lan  = "10.0.0.0/20"
-    mgmt = "172.16.31.0/24"
+    lan   = "10.0.0.0/20"
+    trust = "10.1.0.0/20"
+    mgmt  = "172.16.31.0/24"
   }
 
   peer_address = "169.254.255.5/24"
