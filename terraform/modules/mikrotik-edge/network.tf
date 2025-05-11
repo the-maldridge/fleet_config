@@ -21,19 +21,13 @@ resource "routeros_interface_vlan" "vlan" {
 }
 
 resource "routeros_interface_bridge_vlan" "br_vlan" {
-  bridge   = routeros_interface_bridge.br0.name
-  vlan_ids = [for s in sort(formatlist("%03d", [for vlan in routeros_interface_vlan.vlan : vlan.vlan_id])) : tonumber(s)]
-  tagged   = flatten([routeros_interface_bridge.br0.name, var.trunks, keys(var.bonds)])
-  comment  = "Bridge Networks"
-}
-
-resource "routeros_interface_bridge_port" "vlan" {
   for_each = routeros_interface_vlan.vlan
 
-  interface = each.value.name
-  pvid      = each.value.vlan_id
-  bridge    = routeros_interface_bridge.br0.name
-  comment   = each.value.comment
+  bridge   = routeros_interface_bridge.br0.name
+  vlan_ids = [tonumber(each.value.vlan_id)]
+  tagged   = flatten([routeros_interface_bridge.br0.name, var.trunks, keys(var.bonds)])
+  untagged = lookup(var.ports, replace(each.key, "0", ""), [])
+  comment  = each.value.comment
 }
 
 resource "routeros_ip_address" "local" {

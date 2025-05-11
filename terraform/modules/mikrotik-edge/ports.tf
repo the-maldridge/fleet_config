@@ -22,14 +22,6 @@ resource "routeros_interface_bridge_port" "bond" {
   pvid      = 1
 }
 
-resource "routeros_interface_bridge_vlan" "vlan" {
-  for_each = var.ports
-
-  bridge   = routeros_interface_bridge.br0.name
-  vlan_ids = [routeros_interface_vlan.vlan[format("%s0", each.key)].vlan_id]
-  untagged = each.value
-}
-
 resource "routeros_interface_bonding" "bond" {
   for_each = var.bonds
 
