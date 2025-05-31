@@ -14,5 +14,5 @@
   tasks:
     - name: Add Network
       ansible.builtin.include_role:
-        name: wpa_supplicant
+        name: iwd
         tasks_from: network.yml

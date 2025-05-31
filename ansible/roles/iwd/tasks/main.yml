@@ -1,0 +1,25 @@
+---
+- name: Install Packages
+  community.general.xbps:
+    name: iwd
+    state: present
+  tags: [install_iwd]
+
+- name: Configure IWD
+  ansible.builtin.copy:
+    content: |
+      [General]
+      EnableNetworkConfiguration=true
+    dest: /etc/iwd/main.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: iwd
+  tags: [configure_iwd]
+
+- name: Enable Service
+  ansible.builtin.service:
+    name: iwd
+    state: started
+    enabled: true
+  tags: [enable_iwd]

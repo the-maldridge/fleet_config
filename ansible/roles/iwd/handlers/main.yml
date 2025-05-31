@@ -1,0 +1,6 @@
+---
+- name: Restart IWD
+  listen: iwd
+  ansible.builtin.service:
+    name: iwd
+    state: restarted
