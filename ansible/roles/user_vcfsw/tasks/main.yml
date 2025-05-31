@@ -75,7 +75,6 @@
     mode: "0755"
   tags: [configure_vcfsw_user]
 
-
 - name: Install QBASIC
   ansible.builtin.file:
     path: /home/vcfsw/drive_c/DOS
@@ -111,13 +110,27 @@
     mode: "0644"
   tags: [configure_vcfsw_qbasic]
 
-- name: Install QBASIC (Desktop File)
+- name: Install QBASIC (Desktop File Directory)
   ansible.builtin.file:
     path: /home/vcfsw/.local/share/applications
     state: directory
     owner: vcfsw
     group: vcfsw
     mode: "0755"
+  tags: [configure_vcfsw_qbasic]
+
+- name: Install QBASIC (Desktop File)
+  ansible.builtin.copy:
+    content: |
+      [Desktop Entry]
+      Type=Application
+      Name=QBASIC
+      Exec=/home/vcfsw/qbasic.sh
+      Categories=Development
+    dest: /home/vcfsw/.local/share/applications/qbasic.desktop
+    owner: vcfsw
+    group: vcfsw
+    mode: "0644"
   tags: [configure_vcfsw_qbasic]
 
 - name: Install QBASIC (Script File)
