@@ -37,3 +37,23 @@
   ansible.builtin.file:
     path: /usr/share/xsessions/i3-with-shmlog.desktop
     state: absent
+
+- name: Create /etc/pipewire/pipewire.conf.d
+  ansible.builtin.file:
+    path: /etc/pipewire/pipewire.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Enable Wireplumber
+  ansible.builtin.file:
+    src: /usr/share/examples/wireplumber/10-wireplumber.conf
+    dest: /etc/pipewire/pipewire.conf.d/10-wireplumber.conf
+    state: link
+
+- name: Enable Pipewire-Pulse
+  ansible.builtin.file:
+    src: /usr/share/examples/pipewire/20-pipewire-pulse.conf
+    dest: /etc/pipewire/pipewire.conf.d/20-pipewire-pulse.conf
+    state: link

@@ -9,11 +9,6 @@
 - name: Install Additional Packages
   community.general.xbps:
     pkg:
-      - kicad
-      - kicad-footprints
-      - kicad-library
-      - kicad-symbols
-      - freerouting
       - dosbox
     state: present
   tags: [install_vcfsw_user, install_vcfsw_programs]
@@ -74,8 +69,6 @@
       #!/bin/sh
       caffeine &
       pipewire &
-      pipewire-pulse &
-      wireplumber &
     dest: /home/vcfsw/.icewm/startup
     owner: vcfsw
     group: vcfsw
