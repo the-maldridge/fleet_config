@@ -18,7 +18,7 @@ module "router" {
     peer = ["sfp-sfpplus2"]
   }
 
-  trunks = ["sfp-sfpplus10"]
+  trunks = formatlist("sfp-sfpplus%d", [3])
 
   bonds = {
     bond0 = formatlist("sfp-sfpplus%d", [11, 12])

@@ -17,64 +17,39 @@ static_hosts = {
     addr = "172.16.34.4"
   }
 
-  winbuild = {
-    mac  = "FC:3F:DB:02:D8:DB"
-    addr = "172.16.34.8"
+  cme00 = {
+    mac = "CC:46:D6:4C:72:11"
+    addr = "172.16.34.5"
   }
 
-  netgear-16p1s = {
-    mac  = "34:98:B5:95:0F:49"
-    addr = "172.16.34.9"
-  }
-
-  sneakynet-00 = {
+  icx00 = {
+    mac = "D4:C1:9E:8C:10:94"
     addr = "172.16.34.10"
-    mac  = "18:64:72:c7:a7:0a"
   }
 
-  sneakynet-01 = {
+  icx01 = {
+    mac = "D4:C1:9E:88:D6:7A"
     addr = "172.16.34.11"
-    mac  = "18:64:72:c7:a7:36"
   }
 
-  sneakynet-02 = {
+  icx02 = {
+    mac = "D4:C1:9E:8C:02:BA"
     addr = "172.16.34.12"
-    mac  = "18:64:72:c7:a7:3e"
   }
 
-  sneakynet-03 = {
+  icx03 = {
+    mac = "D4:C1:9E:87:FC:70"
     addr = "172.16.34.13"
-    mac  = "18:64:72:c7:a7:72"
   }
 
-  sneakynet-04 = {
+  icx04 = {
+    mac = "D4:C1:9E:8C:20:E4"
     addr = "172.16.34.14"
-    mac  = "18:64:72:c7:a7:90"
   }
 
-  sneakynet-05 = {
+  icx05 = {
+    mac = "D4:C1:9E:89:C1:D0"
     addr = "172.16.34.15"
-    mac  = "18:64:72:c7:a8:32"
-  }
-
-  sneakynet-06 = {
-    addr = "172.16.34.16"
-    mac  = "18:64:72:c7:a8:64"
-  }
-
-  sneakynet-07 = {
-    addr = "172.16.34.17"
-    mac  = "18:64:72:c7:a8:6a"
-  }
-
-  sneakynet-08 = {
-    addr = "172.16.34.18"
-    mac  = "18:64:72:c9:a7:94"
-  }
-
-  sneakynet-09 = {
-    addr = "172.16.34.19"
-    mac  = "18:64:72:c9:a7:b4"
   }
 
   fleet00 = {
