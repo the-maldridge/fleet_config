@@ -27,11 +27,9 @@ resource "routeros_routing_bgp_connection" "docked" {
 
 resource "routeros_routing_bgp_connection" "internal" {
   for_each = {
-    minicluster = "169.254.255.2"
     bag-bcm     = "169.254.255.4"
     sneakynet   = "169.254.255.6"
     minitel     = "169.254.255.7"
-    gizmo-fms   = "169.254.255.25"
   }
 
   as   = 64582
