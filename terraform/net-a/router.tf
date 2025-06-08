@@ -25,8 +25,8 @@ module "router" {
   }
 
   additional_nat_subnets = [
-    "100.64.0.0/24",
     "169.254.255.0/24",
+    "172.16.29.0/24",
   ]
 
   static_hosts = var.static_hosts
