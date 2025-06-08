@@ -18,38 +18,43 @@ static_hosts = {
   }
 
   cme00 = {
-    mac = "CC:46:D6:4C:72:11"
+    mac  = "CC:46:D6:4C:72:11"
     addr = "172.16.34.5"
   }
 
   icx00 = {
-    mac = "D4:C1:9E:8C:10:94"
+    mac  = "D4:C1:9E:8C:10:94"
     addr = "172.16.34.10"
   }
 
   icx01 = {
-    mac = "D4:C1:9E:88:D6:7A"
+    mac  = "D4:C1:9E:88:D6:7A"
     addr = "172.16.34.11"
   }
 
   icx02 = {
-    mac = "D4:C1:9E:8C:02:BA"
+    mac  = "D4:C1:9E:8C:02:BA"
     addr = "172.16.34.12"
   }
 
   icx03 = {
-    mac = "D4:C1:9E:87:FC:70"
+    mac  = "D4:C1:9E:87:FC:70"
     addr = "172.16.34.13"
   }
 
   icx04 = {
-    mac = "D4:C1:9E:8C:20:E4"
+    mac  = "D4:C1:9E:8C:20:E4"
     addr = "172.16.34.14"
   }
 
   icx05 = {
-    mac = "D4:C1:9E:89:C1:D0"
+    mac  = "D4:C1:9E:89:C1:D0"
     addr = "172.16.34.15"
+  }
+
+  icx06 = {
+    mac  = "D4:C1:9E:8C:01:AC"
+    addr = "172.16.34.16"
   }
 
   fleet00 = {

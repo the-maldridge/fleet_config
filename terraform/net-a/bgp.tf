@@ -27,9 +27,9 @@ resource "routeros_routing_bgp_connection" "docked" {
 
 resource "routeros_routing_bgp_connection" "internal" {
   for_each = {
-    bag-bcm     = "169.254.255.4"
-    sneakynet   = "169.254.255.6"
-    minitel     = "169.254.255.7"
+    bag-bcm   = "169.254.255.4"
+    sneakynet = "169.254.255.6"
+    minitel   = "169.254.255.7"
   }
 
   as   = 64582
