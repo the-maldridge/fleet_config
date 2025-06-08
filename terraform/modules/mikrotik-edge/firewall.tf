@@ -26,7 +26,7 @@ resource "routeros_ip_firewall_addr_list" "bogons_v4" {
 }
 
 resource "routeros_ip_firewall_addr_list" "nat_sources" {
-  for_each = toset(flatten([values(var.subnets), var.additional_nat_subnets]))
+  for_each = toset(flatten([values(var.subnets), var.additional_nat_subnets, "169.254.250.0/24"]))
 
   list    = "nat_sources"
   address = each.value
