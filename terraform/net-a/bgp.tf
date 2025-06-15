@@ -30,6 +30,7 @@ resource "routeros_routing_bgp_connection" "internal" {
     bag-bcm   = "169.254.255.4"
     sneakynet = "169.254.255.6"
     minitel   = "169.254.255.7"
+    net-b     = "169.254.255.5"
   }
 
   as   = 64582

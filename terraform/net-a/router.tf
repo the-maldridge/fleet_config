@@ -3,8 +3,8 @@ module "router" {
 
   hostname = "edge0"
   subnets = {
-    lan   = "10.0.0.0/20"
-    trust = "10.1.0.0/20"
+    lan   = "10.10.0.0/20"
+    trust = "10.11.0.0/20"
     mgmt  = "172.16.34.0/24"
   }
 
@@ -15,7 +15,7 @@ module "router" {
   ports = {
     mgmt = ["ether1", "sfp-sfpplus9"]
     wan  = ["sfp-sfpplus1"]
-    peer = ["sfp-sfpplus2"]
+    peer = ["sfp-sfpplus2", "sfp-sfpplus4"]
   }
 
   trunks = formatlist("sfp-sfpplus%d", [3])
@@ -27,6 +27,7 @@ module "router" {
   additional_nat_subnets = [
     "169.254.255.0/24",
     "172.16.29.0/24",
+    "172.16.31.0/24",
   ]
 
   static_hosts = var.static_hosts
