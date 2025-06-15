@@ -17,7 +17,7 @@ module "router" {
   ports = {
     lan  = formatlist("ether%d", [6, 7])
     wan  = formatlist("ether%d", [1])
-    peer = formatlist("ether%d", [2, 3, 4])
+    peer = flatten([formatlist("ether%d", [2, 3, 4]), "sfp1"])
     mgmt = formatlist("ether%d", [5])
   }
 
