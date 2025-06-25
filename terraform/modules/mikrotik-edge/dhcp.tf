@@ -6,6 +6,20 @@ resource "routeros_ip_pool" "pool" {
   comment = "LAN Default IP Pool"
 }
 
+resource "routeros_ip_dhcp_server_option" "cme_addr" {
+  code = 150
+  name = "cisco-telephony"
+  value = "'${var.cme_addr}'"
+  comment = "cisco-telephony"
+}
+
+resource "routeros_ip_dhcp_server_option_set" "telephony" {
+  name    = "telephony"
+  options = join(",", [
+    routeros_ip_dhcp_server_option.cme_addr.name,
+  ])
+}
+
 resource "routeros_ip_dhcp_server" "server" {
   for_each = var.subnets
 
@@ -14,7 +28,8 @@ resource "routeros_ip_dhcp_server" "server" {
   address_pool       = routeros_ip_pool.pool[each.key].name
   comment            = format("%s Default DHCP Server", upper(each.key))
   conflict_detection = true
-  lease_time         = "1h"
+  lease_time         = var.dhcp_lease_time
+  dhcp_option_set = routeros_ip_dhcp_server_option_set.telephony.name
 }
 
 resource "routeros_ip_dhcp_server_network" "network" {

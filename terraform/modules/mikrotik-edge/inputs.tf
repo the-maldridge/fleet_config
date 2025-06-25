@@ -9,6 +9,12 @@ variable "subnets" {
   description = "Map of network to subnet"
 }
 
+variable "dhcp_lease_time" {
+  type = string
+  description = "Default DHCP Lease Duration"
+  default = "1h"
+}
+
 variable "use_site_dns" {
   type        = bool
   description = "Use DNS from WAN DHCP"
@@ -75,4 +81,10 @@ variable "static_hosts" {
   }))
   description = "Map of static hosts"
   default     = {}
+}
+
+variable "cme_addr" {
+  type = string
+  description = "Address of a CME Server"
+  default = "127.0.0.1"
 }

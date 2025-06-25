@@ -7,18 +7,21 @@ module "router" {
     trust = "10.11.0.0/20"
     mgmt  = "172.16.34.0/24"
   }
+  dhcp_lease_time = "3h"
 
   peer_address = "169.254.255.8/24"
   router_id    = "169.255.255.8"
   domain_name  = "sneaky.nonroutable.network"
 
+  cme_addr = "172.16.32.1"
+
   ports = {
     mgmt = ["ether1", "sfp-sfpplus9"]
     wan  = ["sfp-sfpplus1"]
-    peer = ["sfp-sfpplus2", "sfp-sfpplus4"]
+    peer = ["sfp-sfpplus2"]
   }
 
-  trunks = formatlist("sfp-sfpplus%d", [3])
+  trunks = formatlist("sfp-sfpplus%d", [3, 4, 5, 6])
 
   bonds = {
     bond0 = formatlist("sfp-sfpplus%d", [11, 12])
