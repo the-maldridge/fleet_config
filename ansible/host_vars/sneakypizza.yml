@@ -19,3 +19,6 @@ nomad_volumes:
   - name: filespace_data
     path: /nomad/filespace_data
     read_only: false
+  - name: moneyprinter_data
+    path: /nomad/moneyprinter_data
+    read_only: false
