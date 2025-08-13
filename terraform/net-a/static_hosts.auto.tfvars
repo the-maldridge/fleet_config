@@ -7,9 +7,10 @@ static_hosts = {
     mac  = "00:25:90:f4:92:a0"
     addr = "172.16.34.3"
     cname = [
-      "traefik",
       "files",
+      "netauth",
       "pcsmpages",
+      "traefik",
     ]
   }
   sneaky-oob = {
