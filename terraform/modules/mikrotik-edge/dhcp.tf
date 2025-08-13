@@ -29,7 +29,6 @@ resource "routeros_ip_dhcp_server" "server" {
   comment            = format("%s Default DHCP Server", upper(each.key))
   conflict_detection = true
   lease_time         = var.dhcp_lease_time
-  dhcp_option_set = routeros_ip_dhcp_server_option_set.telephony.name
 }
 
 resource "routeros_ip_dhcp_server_network" "network" {
@@ -40,6 +39,8 @@ resource "routeros_ip_dhcp_server_network" "network" {
   gateway    = cidrhost(each.value, 1)
   domain     = var.domain_name
   dns_server = [cidrhost(each.value, 1)]
+
+  dhcp_option_set = routeros_ip_dhcp_server_option_set.telephony.name
 }
 
 resource "routeros_ip_dhcp_server_lease" "lease" {
