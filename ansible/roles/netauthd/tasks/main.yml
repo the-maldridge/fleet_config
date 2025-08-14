@@ -1,0 +1,119 @@
+---
+- name: Install Packages
+  community.general.xbps:
+    pkg: NetAuth-server
+    state: present
+  tags: [install_netauth]
+
+- name: Ensure /etc/netauth/keys Exists
+  ansible.builtin.file:
+    path: /etc/netauth/keys
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  tags: [install_netauth]
+
+- name: Generate Token Keys
+  ansible.builtin.command:
+    cmd: nsutil keygen rsa 2048
+    chdir: /etc/netauth/keys
+    creates: /etc/netauth/keys/rsa-private.tokenkey
+  notify:
+    - netauthd
+  tags: [install_netauth, configure_netauth]
+
+- name: Enforce Permissions on Token Keys
+  ansible.builtin.file:
+    path: /etc/netauth/keys/rsa-{{ item.type }}.tokenkey
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  loop:
+    - type: private
+      owner: _netauth
+      group: _netauth
+      mode: '0400'
+    - type: public
+      owner: root
+      group: root
+      mode: '0644'
+  loop_control:
+    label: "{{ item.type }}"
+  notify:
+    - netauthd
+  tags: [install_netauth, configure_netauth]
+
+- name: Generate TLS Certificate
+  ansible.builtin.command:
+    cmd: nsutil certgen netauth.sneaky.nonroutable.network
+    chdir: /etc/netauth/keys
+    creates: tls.key
+  notify:
+    - netauthd
+  tags: [install_netauth, configure_netauth]
+
+- name: Enforce Permissions on TLS Files
+  ansible.builtin.file:
+    path: /etc/netauth/keys/tls.{{ item.type }}
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  loop:
+    - type: pem
+      owner: root
+      group: root
+      mode: '0644'
+    - type: key
+      owner: root
+      group: _netauth
+      mode: '0640'
+  loop_control:
+    label: "{{ item.type }}"
+  notify:
+    - netauthd
+  tags: [install_netauth, configure_netauth]
+
+- name: Check if _root Exists
+  ansible.builtin.stat:
+    path: /var/lib/netauth/kv/entities/_root
+  register: root_exists
+  tags: [install_netauth, configure_netauth, bootstrap_netauth]
+
+- name: Bootstrap Root User
+  when: not root_exists.stat.exists
+  tags: [install_netauth, configure_netauth, bootstrap_netauth]
+  block:
+    - name: Ensure netauthd is Stopped
+      ansible.builtin.runit:
+        name: netauthd
+        state: stopped
+
+    - name: Generate Password
+      ansible.builtin.set_fact:
+        netauth_root_password: "{{ lookup('password', '/dev/null', chars=['ascii_letters']) }}"
+
+    - name: Bootstrap Root User
+      ansible.builtin.command:
+        cmd: nsutil bootstrap
+      environment:
+        NETAUTH_UNATTENDED_BOOTSTRAP_NAME: _root
+        NETAUTH_UNATTENDED_BOOTSTRAP_SECRET: "{{ netauth_root_password }}"
+      become: true
+      become_user: _netauth
+
+    - name: Write Password
+      ansible.builtin.copy:
+        content: "{{ netauth_root_password }}"
+        dest: "{{ ansible_user_dir }}/.netauth_root_password"
+        owner: "{{ ansible_user_uid }}"
+        group: "{{ ansible_user_gid }}"
+        mode: '0400'
+      no_log: true
+
+- name: Enable Services
+  ansible.builtin.runit:
+    name: netauthd
+    state: started
+    enabled: true
+  tags: [install_netauth, enable_netauth]

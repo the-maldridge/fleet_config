@@ -1,0 +1,25 @@
+[core]
+  home="/var/lib/netauth"
+  server="netauth.sneaky.nonroutable.network"
+  port=1729
+
+[server]
+  bind=""
+  port=1729
+
+[token]
+  backend = "jwt-rsa"
+  lifetime = "20m"
+  renewals = 0
+
+[db]
+  backend = "filesystem"
+
+[crypto]
+  backend = "bcrypt"
+
+  [crypto.bcrypt]
+    cost = 10
+
+[ldap]
+  domain = "netauth.sneaky.nonroutable.network"

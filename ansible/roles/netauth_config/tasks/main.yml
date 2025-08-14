@@ -1,0 +1,18 @@
+---
+- name: Ensure /etc/netauth Exists
+  ansible.builtin.file:
+    path: /etc/netauth
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  tags: [configure_netauth]
+
+- name: Install /etc/netauth/config.toml
+  ansible.builtin.copy:
+    src: config.toml
+    dest: /etc/netauth/config.toml
+    owner: root
+    group: root
+    mode: '0644'
+  tags: [configure_netauth]

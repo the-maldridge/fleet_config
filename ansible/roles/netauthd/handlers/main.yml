@@ -1,0 +1,6 @@
+---
+- name: Restart netauthd
+  listen: netauthd
+  ansible.builtin.runit:
+    name: netauthd
+    state: restarted

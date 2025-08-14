@@ -1,3 +1,6 @@
+[netauth_server]
+sneakypizza
+
 [nomad:children]
 nomad_server
 
