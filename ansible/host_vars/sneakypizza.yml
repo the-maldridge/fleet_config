@@ -19,6 +19,12 @@ nomad_volumes:
   - name: filespace_data
     path: /nomad/filespace_data
     read_only: false
+  - name: prometheus_data
+    path: /nomad/prometheus_data
+    read_only: false
+  - name: grafana_data
+    path: /nomad/grafana_data
+    read_only: false
   - name: moneyprinter_data
     path: /nomad/moneyprinter_data
     read_only: false

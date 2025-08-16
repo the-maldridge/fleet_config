@@ -7,6 +7,11 @@ client {
     retry_join = {{ nomad_server_join | to_json }}
   }
 {% endif %}
+
+  host_volume "netauth_config" {
+    path = "/etc/netauth"
+    read_only = true
+  }
 {% for volume in nomad_volumes|default([]) %}
 
   host_volume "{{volume.name}}" {

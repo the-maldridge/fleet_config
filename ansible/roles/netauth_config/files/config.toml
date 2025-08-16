@@ -22,4 +22,4 @@
     cost = 10
 
 [ldap]
-  domain = "netauth.sneaky.nonroutable.network"
+  domain = "sneaky.nonroutable.network"
