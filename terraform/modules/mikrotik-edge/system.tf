@@ -10,7 +10,6 @@ resource "routeros_ip_dns" "dns" {
 resource "routeros_ip_service" "disabled" {
   for_each = {
     api-ssl = 8729
-    api     = 8278
     ftp     = 21
     telnet  = 21
     winbox  = 8291
