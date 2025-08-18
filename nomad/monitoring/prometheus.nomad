@@ -60,6 +60,7 @@ job "prometheus" {
           global = {
             scrape_interval = "30s"
             evaluation_interval = "30s"
+            scrape_timeout = "30s"
           }
 
           scrape_configs = [{
