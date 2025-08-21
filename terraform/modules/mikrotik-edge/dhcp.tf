@@ -7,14 +7,14 @@ resource "routeros_ip_pool" "pool" {
 }
 
 resource "routeros_ip_dhcp_server_option" "cme_addr" {
-  code = 150
-  name = "cisco-telephony"
-  value = "'${var.cme_addr}'"
+  code    = 150
+  name    = "cisco-telephony"
+  value   = "'${var.cme_addr}'"
   comment = "cisco-telephony"
 }
 
 resource "routeros_ip_dhcp_server_option_set" "telephony" {
-  name    = "telephony"
+  name = "telephony"
   options = join(",", [
     routeros_ip_dhcp_server_option.cme_addr.name,
   ])

@@ -9,10 +9,19 @@ variable "subnets" {
   description = "Map of network to subnet"
 }
 
+variable "additional_upstreams" {
+  type = map(object({
+    id          = number
+    description = string
+  }))
+  description = "Additional Upstream Interfaces"
+  default     = {}
+}
+
 variable "dhcp_lease_time" {
-  type = string
+  type        = string
   description = "Default DHCP Lease Duration"
-  default = "1h"
+  default     = "1h"
 }
 
 variable "use_site_dns" {
@@ -84,7 +93,7 @@ variable "static_hosts" {
 }
 
 variable "cme_addr" {
-  type = string
+  type        = string
   description = "Address of a CME Server"
-  default = "127.0.0.1"
+  default     = "127.0.0.1"
 }

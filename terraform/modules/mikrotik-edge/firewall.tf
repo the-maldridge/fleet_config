@@ -111,11 +111,11 @@ resource "routeros_ip_firewall_filter" "default_drop" {
 }
 
 resource "routeros_ip_firewall_nat" "srcnat" {
-  chain            = "srcnat"
-  action           = "masquerade"
-  out_interface    = routeros_interface_vlan.vlan["wan0"].name
-  src_address_list = "nat_sources"
-  comment          = "nat-masquerade"
+  chain              = "srcnat"
+  action             = "masquerade"
+  out_interface_list = routeros_interface_list.upstreams.name
+  src_address_list   = "nat_sources"
+  comment            = "nat-masquerade"
 }
 
 resource "routeros_ip_firewall_filter" "fasttrack_forward" {
