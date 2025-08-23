@@ -42,12 +42,12 @@ resource "routeros_ip_firewall_filter" "accept_established" {
 }
 
 resource "routeros_ip_firewall_filter" "no_wan_bogons" {
-  chain            = "input"
-  action           = "drop"
-  in_interface     = routeros_interface_vlan.vlan["wan0"].name
-  src_address_list = "bogons_v4"
-  comment          = "deny-bogons-to-self"
-  place_before     = routeros_ip_firewall_filter.default_drop.id
+  chain             = "input"
+  action            = "drop"
+  in_interface_list = routeros_interface_list.upstreams.name
+  src_address_list  = "bogons_v4"
+  comment           = "deny-bogons-to-self"
+  place_before      = routeros_ip_firewall_filter.default_drop.id
 }
 
 resource "routeros_ip_firewall_filter" "no_invalid" {
@@ -62,46 +62,26 @@ resource "routeros_ip_firewall_filter" "accept_icmp" {
   chain        = "input"
   action       = "accept"
   protocol     = "icmp"
+  comment      = "accept-icmp"
   place_before = routeros_ip_firewall_filter.default_drop.id
 }
 
-resource "routeros_ip_firewall_filter" "accept_mgmt" {
-  chain        = "input"
-  action       = "accept"
-  in_interface = routeros_interface_vlan.vlan["mgmt0"].name
-  place_before = routeros_ip_firewall_filter.default_drop.id
+resource "routeros_ip_firewall_filter" "accept_trusted_origin" {
+  chain             = "input"
+  action            = "accept"
+  comment           = "accept-trusted"
+  in_interface_list = routeros_interface_list.trusted_origin.name
+  place_before      = routeros_ip_firewall_filter.default_drop.id
 }
 
-resource "routeros_ip_firewall_filter" "accept_peer" {
-  chain        = "input"
-  action       = "accept"
-  in_interface = routeros_interface_vlan.vlan["peer0"].name
-  place_before = routeros_ip_firewall_filter.default_drop.id
-}
-
-resource "routeros_ip_firewall_filter" "accept_gate" {
-  chain        = "input"
-  action       = "accept"
-  in_interface = routeros_interface_vlan.vlan["gate0"].name
-  place_before = routeros_ip_firewall_filter.default_drop.id
-}
-
-resource "routeros_ip_firewall_filter" "lan_dns" {
-  chain        = "input"
-  action       = "accept"
-  protocol     = "udp"
-  port         = "53"
-  in_interface = routeros_interface_vlan.vlan["lan0"].name
-  place_before = routeros_ip_firewall_filter.default_drop.id
-}
-
-resource "routeros_ip_firewall_filter" "trust_dns" {
-  chain        = "input"
-  action       = "accept"
-  protocol     = "udp"
-  port         = "53"
-  in_interface = routeros_interface_vlan.vlan["trust0"].name
-  place_before = routeros_ip_firewall_filter.default_drop.id
+resource "routeros_ip_firewall_filter" "local_dns" {
+  chain             = "input"
+  action            = "accept"
+  protocol          = "udp"
+  port              = "53"
+  comment           = "accept-dns"
+  in_interface_list = routeros_interface_list.local.name
+  place_before      = routeros_ip_firewall_filter.default_drop.id
 }
 
 resource "routeros_ip_firewall_filter" "default_drop" {
@@ -124,12 +104,13 @@ resource "routeros_ip_firewall_filter" "fasttrack_forward" {
   connection_state = "established,related"
   comment          = "forward-fasttracked"
   hw_offload       = true
-  place_before     = routeros_ip_firewall_filter.block_lan_to_mgmt.id
+  place_before     = routeros_ip_firewall_filter.block_untrusted_to_trusted.id
 }
 
-resource "routeros_ip_firewall_filter" "block_lan_to_mgmt" {
-  chain         = "forward"
-  action        = "drop"
-  in_interface  = routeros_interface_vlan.vlan["lan0"].name
-  out_interface = routeros_interface_vlan.vlan["mgmt0"].name
+resource "routeros_ip_firewall_filter" "block_untrusted_to_trusted" {
+  chain              = "forward"
+  action             = "drop"
+  comment            = "deny-untrust-to-trust"
+  in_interface_list  = routeros_interface_list.untrusted_origin.name
+  out_interface_list = routeros_interface_list.trusted_origin.name
 }

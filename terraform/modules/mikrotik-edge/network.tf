@@ -30,6 +30,43 @@ resource "routeros_interface_bridge_vlan" "br_vlan" {
   comment  = each.value.comment
 }
 
+resource "routeros_interface_list" "local" {
+  name = "local"
+}
+
+resource "routeros_interface_list_member" "local" {
+  for_each = { for iface, val in routeros_interface_vlan.vlan : iface => val if iface != "wan0" }
+
+  list      = routeros_interface_list.local.name
+  interface = routeros_interface_vlan.vlan[each.key].name
+}
+
+resource "routeros_interface_list" "trusted_origin" {
+  name = "trusted_origin"
+}
+
+resource "routeros_interface_list_member" "trusted_origin" {
+  for_each = { for iface, val in routeros_interface_vlan.vlan : iface => val if contains(["peer0", "mgmt0", "gate0"], iface) }
+
+  list      = routeros_interface_list.trusted_origin.name
+  interface = routeros_interface_vlan.vlan[each.key].name
+}
+
+resource "routeros_interface_list" "untrusted_origin" {
+  name = "untrusted_origin"
+}
+
+resource "routeros_interface_list_member" "untrusted_origin" {
+  # This looks wrong, but the trust0 network really is untrusted.
+  # That's for entities that should be allowed broader network access
+  # to the outside, but not necessarily any more access to the actual
+  # local network.
+  for_each = { for iface, val in routeros_interface_vlan.vlan : iface => val if contains(["trust0", "lan0"], iface) }
+
+  list      = routeros_interface_list.untrusted_origin.name
+  interface = routeros_interface_vlan.vlan[each.key].name
+}
+
 resource "routeros_interface_list" "upstreams" {
   name = "upstreams"
 }
