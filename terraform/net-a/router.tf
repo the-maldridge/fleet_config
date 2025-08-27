@@ -10,10 +10,10 @@ module "router" {
   dhcp_lease_time = "3h"
 
   additional_upstreams = {
-    skynet = { id = 21, description = "SkyNet" }
+    skynet  = { id = 21, description = "SkyNet" }
     tmobile = { id = 22, description = "T-Mobile" }
-    att = { id = 23, description = "AT&T" }
-    cbrs = { id = 24, description = "Sketchy-CBRS" }
+    att     = { id = 23, description = "AT&T" }
+    cbrs    = { id = 24, description = "Sketchy-CBRS" }
   }
 
   peer_address = "169.254.255.8/24"
