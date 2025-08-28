@@ -13,7 +13,7 @@ module "router" {
   domain_name  = "sneaky.nonroutable.network"
 
   use_site_dns = true
-  cme_addr = "172.16.32.1"
+  cme_addr     = "172.16.32.1"
 
   ports = {
     lan  = formatlist("ether%d", [6, 7])
