@@ -20,14 +20,12 @@ variable "net_config" {
   type = object({
     ssid = string
     psk  = string
-    mode = string
-    band = string
+    mode = optional(string, "WPA")
+    band = optional(string, "2ghz-g/n")
   })
   default = {
     ssid = "NONENET1"
     psk  = "NONEPASS"
-    mode = "WPA"
-    band = "2ghz-g/n"
   }
   description = "Wireless network config"
 }
