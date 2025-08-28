@@ -28,3 +28,6 @@ nomad_volumes:
   - name: moneyprinter_data
     path: /nomad/moneyprinter_data
     read_only: false
+  - name: terrastate_data
+    path: /nomad/terrastate
+    read_only: false
