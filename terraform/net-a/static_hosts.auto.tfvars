@@ -218,23 +218,18 @@ static_hosts = {
     addr = "172.16.34.89"
   }
 
-  omnicast = {
-    mac  = "a0:36:bc:58:00:92"
+  aruba10 = {
+    mac  = "20:a6:cd:c9:30:38"
     addr = "172.16.34.90"
   }
 
-  cam1 = {
-    mac  = "ec:71:db:dc:0f:be"
+  aruba11 = {
+    mac  = "20:a6:cd:c9:30:72"
     addr = "172.16.34.91"
   }
 
-  cam2 = {
-    mac  = "ec:71:db:5f:79:e8"
+  aruba12 = {
+    mac  = "80:8d:b7:c5:ce:7c"
     addr = "172.16.34.92"
-  }
-
-  cam3 = {
-    mac  = "EC:71:DB:82:BA:AF"
-    addr = "172.16.34.93"
   }
 }
