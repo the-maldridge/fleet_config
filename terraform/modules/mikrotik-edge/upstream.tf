@@ -4,7 +4,6 @@ resource "routeros_ip_dhcp_client" "upstream" {
   use_peer_ntp      = false
   use_peer_dns      = var.use_site_dns
   comment           = "Default Upstream"
-  check_gateway     = "arp"
 }
 
 resource "routeros_ip_dhcp_client" "supplemental" {
@@ -15,5 +14,4 @@ resource "routeros_ip_dhcp_client" "supplemental" {
   use_peer_ntp      = false
   use_peer_dns      = var.use_site_dns
   comment           = each.value.description
-  check_gateway     = "arp"
 }
