@@ -62,3 +62,41 @@ resource "routeros_routing_bgp_connection" "internal" {
     network           = "local"
   }
 }
+
+resource "routeros_routing_bgp_connection" "adjacent" {
+  for_each = {
+    mal = {
+      asn = 64513
+      addr = "169.254.255.25"
+    }
+  }
+
+  as   = 64582
+  name = each.key
+
+  connect        = true
+  listen         = true
+  nexthop_choice = "force-self"
+
+  cluster_id = "169.254.255.1"
+  router_id  = "169.254.255.5"
+
+  hold_time      = "30s"
+  keepalive_time = "10s"
+
+  local {
+    role    = "ebgp"
+    address = "169.254.255.5"
+  }
+
+  remote {
+    address = each.value.addr
+    as = each.value.asn
+  }
+
+  output {
+    default_originate = "if-installed"
+    redistribute      = "connected,bgp"
+    network           = "local"
+  }
+}
