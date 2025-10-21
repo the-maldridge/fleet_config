@@ -1,0 +1,41 @@
+- name: Ensure Network Config Directory
+  file:
+    path: /etc/cni/net.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Configure Networks
+  template:
+    src: net.conflist.j2
+    dest: /etc/cni/net.d/{{item.name}}.conflist
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ cni_networks|default([]) }}"
+
+- name: Install DHCP Service (1/2)
+  file:
+    path: /etc/sv/cni-dhcp
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  when: cni_networks|default([])
+
+- name: Install DHCP Service (2/2)
+  copy:
+    src: run
+    dest: /etc/sv/cni-dhcp/run
+    owner: root
+    group: root
+    mode: 0755
+  when: cni_networks|default([])
+
+- name: Enable DHCP Service
+  service:
+    name: cni-dhcp
+    enabled: true
+    state: started
+  when: cni_networks|default([])

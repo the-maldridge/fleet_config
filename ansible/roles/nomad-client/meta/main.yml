@@ -1,3 +1,4 @@
 ---
 dependencies:
   - role: nomad
+  - role: cni_networks

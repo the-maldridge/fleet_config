@@ -35,3 +35,9 @@ fleet[14:17]
 [fleet_media]
 fleet-media-a
 fleet-media-b
+
+[musl]
+sneakyserv
+
+[static_net]
+sneakyserv

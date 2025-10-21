@@ -3,6 +3,33 @@ ansible_host: 172.16.31.3
 
 network_input_policy: ACCEPT
 
+network_hostname: sneakyserv
+
+network_static_dns_resolvers:
+  - 172.16.31.1
+
+network_static_routes:
+  - to: default
+    via: 172.16.31.1
+
+network_static_interfaces:
+  - name: eno1
+    type: trunk
+  - name: mgmt0
+    type: vlan
+    parent: eno1
+    id: 30
+    addrs:
+      - 172.16.31.3/24
+  - name: lan0
+    parent: eno1
+    type: vlan
+    id: 10
+  - name: trust0
+    parent: eno1
+    type: vlan
+    id: 15
+
 nomad_volumes:
   - name: pitman_redis
     path: /nomad/pitman_redis
@@ -19,3 +46,9 @@ nomad_volumes:
   - name: grafana_data
     path: /nomad/grafana
     read_only: false
+
+cni_networks:
+  - name: trust
+    parent: trust0
+  - name: lan
+    parent: lan0

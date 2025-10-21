@@ -9,3 +9,10 @@
     - void.network.dns
     - mmc_drivers
     - chrony
+
+- hosts: static_net
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - void.network.static
