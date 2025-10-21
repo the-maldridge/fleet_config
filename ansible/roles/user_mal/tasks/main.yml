@@ -1,0 +1,85 @@
+---
+- name: Install Graphical Environments - icewm
+  community.general.xbps:
+    pkg:
+      - icewm
+    state: present
+  tags: [install_mal_user]
+
+- name: Install Additional Packages
+  community.general.xbps:
+    pkg:
+      - sauerbraten
+    state: present
+  tags: [install_mal_user, install_mal_programs]
+
+- name: Create MAL User
+  ansible.builtin.user:
+    name: mal
+    create_home: true
+    groups: audio
+    append: true
+  tags: [install_mal_user]
+
+- name: Create icewm settings path
+  ansible.builtin.file:
+    path: "/home/mal/.icewm"
+    state: directory
+    owner: mal
+    group: mal
+    mode: "0700"
+  tags: [configure_mal_user]
+
+- name: Select Theme
+  ansible.builtin.copy:
+    content: |
+      Theme="Infadel2/default.theme"
+    dest: /home/mal/.icewm/theme
+    owner: mal
+    group: mal
+    mode: "0644"
+  tags: [configure_mal_user]
+
+- name: Install Wallpaper
+  ansible.builtin.copy:
+    src: "{{ mal_user_wallpaper }}"
+    dest: /home/mal/.{{ mal_user_wallpaper|basename }}
+    owner: mal
+    group: mal
+    mode: "0644"
+  when: mal_user_wallpaper is defined
+  tags: [configure_mal_user]
+
+- name: Set Wallpaper
+  ansible.builtin.copy:
+    content: |
+      DesktopBackgroundCenter=1
+      DesktopBackgroundImage=/home/mal/.{{ mal_user_wallpaper|basename }}
+      DesktopBackgroundColor=#000
+    dest: /home/mal/.icewm/preferences
+    owner: mal
+    group: mal
+    mode: "0644"
+  when: mal_user_wallpaper is defined
+  tags: [configure_mal_user]
+
+- name: Install Startup Script
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      caffeine &
+      pipewire &
+    dest: /home/mal/.icewm/startup
+    owner: mal
+    group: mal
+    mode: "0755"
+  tags: [configure_mal_user]
+
+- name: Enable Autologin
+  ansible.builtin.copy:
+    src: autologin.conf
+    dest: /etc/sddm.conf.d/autologin.conf
+    owner: root
+    group: root
+    mode: "0644"
+  tags: [install_mal_user]

@@ -9,13 +9,20 @@
   ansible.builtin.copy:
     content: |
       [General]
-      EnableNetworkConfiguration=true
+      EnableNetworkConfiguration=false
     dest: /etc/iwd/main.conf
     owner: root
     group: root
     mode: "0644"
   notify: iwd
   tags: [configure_iwd]
+
+- name: Enable dhcpcd
+  ansible.builtin.service:
+    name: dhcpcd
+    state: started
+    enabled: true
+  tags: [enable_iwd]
 
 - name: Enable Service
   ansible.builtin.service:
