@@ -17,14 +17,14 @@
   notify: iwd
   tags: [configure_iwd]
 
-- name: Enable dhcpcd
+- name: Enable Service (dhcpcd)
   ansible.builtin.service:
     name: dhcpcd
     state: started
     enabled: true
   tags: [enable_iwd]
 
-- name: Enable Service
+- name: Enable Service (iwd)
   ansible.builtin.service:
     name: iwd
     state: started
