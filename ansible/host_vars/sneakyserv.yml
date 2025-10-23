@@ -25,10 +25,19 @@ network_static_interfaces:
     parent: eno1
     type: vlan
     id: 10
+    addrs:
+      - 10.0.0.2/20
   - name: trust0
     parent: eno1
     type: vlan
     id: 15
+    addrs:
+      - 10.1.0.2/20
+      - 10.1.0.3/20
+      - 10.1.0.4/20
+      - 10.1.0.5/20
+      - 10.1.0.6/20
+      - 10.1.0.7/20
 
 nomad_volumes:
   - name: pitman_redis
