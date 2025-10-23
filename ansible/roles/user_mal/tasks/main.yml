@@ -75,6 +75,55 @@
     mode: "0755"
   tags: [configure_mal_user]
 
+- name: Install Sauerbraten (Desktop File Directory)
+  ansible.builtin.file:
+    path: /home/mal/.local/share/applications
+    state: directory
+    owner: mal
+    group: mal
+    mode: "0755"
+  tags: [configure_mal_user]
+
+- name: Install Sauerbraten (Desktop File)
+  ansible.builtin.copy:
+    content: |
+      [Desktop Entry]
+      Type=Application
+      Name=Sauerbraten
+      Exec=/usr/bin/sauerbraten
+      Categories=Games
+    dest: /home/mal/.local/share/applications/sauerbraten.desktop
+    owner: mal
+    group: mal
+    mode: "0644"
+  tags: [configure_mal_user]
+
+- name: Install Sauerbraten (Game Directory)
+  ansible.builtin.file:
+    path: /home/mal/.sauerbraten
+    state: directory
+    owner: mal
+    group: mal
+    mode: "0755"
+  tags: [configure_mal_user]
+
+- name: Install Sauerbraten (Game autoexec.cfg)
+  ansible.builtin.copy:
+    content: |
+      name {{ inventory_hostname }}
+      blood 0
+
+      addserver 10.1.0.3
+      addserver 10.1.0.4
+      addserver 10.1.0.5
+      addserver 10.1.0.6
+      addserver 10.1.0.7
+    dest: /home/mal/.sauerbraten/autoexec.cfg
+    owner: mal
+    group: mal
+    mode: "0644"
+  tags: [configure_mal_user]
+
 - name: Enable Autologin
   ansible.builtin.copy:
     src: autologin.conf
