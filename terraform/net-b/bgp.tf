@@ -66,7 +66,7 @@ resource "routeros_routing_bgp_connection" "internal" {
 resource "routeros_routing_bgp_connection" "adjacent" {
   for_each = {
     mal = {
-      asn = 64513
+      asn  = 64513
       addr = "169.254.255.25"
     }
   }
@@ -91,7 +91,7 @@ resource "routeros_routing_bgp_connection" "adjacent" {
 
   remote {
     address = each.value.addr
-    as = each.value.asn
+    as      = each.value.asn
   }
 
   output {

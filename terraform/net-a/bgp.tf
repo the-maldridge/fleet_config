@@ -85,7 +85,7 @@ resource "routeros_routing_bgp_connection" "adjacent" {
 
   remote {
     address = each.value.addr
-    as = each.value.asn
+    as      = each.value.asn
   }
 
   output {

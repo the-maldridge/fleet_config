@@ -66,6 +66,15 @@ resource "routeros_ip_firewall_filter" "accept_icmp" {
   place_before = routeros_ip_firewall_filter.default_drop.id
 }
 
+resource "routeros_ip_firewall_filter" "accept_dns" {
+  chain        = "input"
+  action       = "accept"
+  protocol     = "udp"
+  dst_port     = 53
+  comment      = "accept-dns"
+  place_before = routeros_ip_firewall_filter.default_drop.id
+}
+
 resource "routeros_ip_firewall_filter" "accept_trusted_origin" {
   chain             = "input"
   action            = "accept"
@@ -105,6 +114,14 @@ resource "routeros_ip_firewall_filter" "fasttrack_forward" {
   comment          = "forward-fasttracked"
   hw_offload       = true
   place_before     = routeros_ip_firewall_filter.block_untrusted_to_trusted.id
+}
+
+resource "routeros_ip_firewall_filter" "permit_trusted_to_untrusted" {
+  chain              = "forward"
+  action             = "accept"
+  comment            = "permit-trust-to-untrust"
+  in_interface_list  = routeros_interface_list.trusted_origin.name
+  out_interface_list = routeros_interface_list.untrusted_origin.name
 }
 
 resource "routeros_ip_firewall_filter" "block_untrusted_to_trusted" {
