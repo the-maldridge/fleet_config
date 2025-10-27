@@ -33,32 +33,6 @@ static_hosts = {
     cname = ["lan-party"]
   }
 
-  sneakyserv-sauer1 = {
-    mac    = "02:01:00:00:00:01"
-    addr   = "10.1.0.3"
-    server = "trust"
-  }
-  sneakyserv-sauer2 = {
-    mac    = "02:01:00:00:00:02"
-    addr   = "10.1.0.4"
-    server = "trust"
-  }
-  sneakyserv-sauer3 = {
-    mac    = "02:01:00:00:00:03"
-    addr   = "10.1.0.5"
-    server = "trust"
-  }
-  sneakyserv-sauer4 = {
-    mac    = "02:01:00:00:00:04"
-    addr   = "10.1.0.6"
-    server = "trust"
-  }
-  sneakyserv-sauer5 = {
-    mac    = "02:01:00:00:00:05"
-    addr   = "10.1.0.7"
-    server = "trust"
-  }
-
   optimux = {
     addr = "172.16.31.4"
     mac  = "48:a9:8a:ad:2b:2c"
