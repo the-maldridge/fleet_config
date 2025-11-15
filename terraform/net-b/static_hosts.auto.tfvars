@@ -30,7 +30,7 @@ static_hosts = {
     addr   = "10.1.0.2"
     server = "trust"
 
-    cname = ["lan-party"]
+    cname = ["scorecard.best."]
   }
 
   optimux = {

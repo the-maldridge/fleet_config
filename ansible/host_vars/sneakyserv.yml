@@ -50,6 +50,9 @@ nomad_volumes:
   - name: grafana_data
     path: /nomad/grafana
     read_only: false
+  - name: scorecard_data
+    path: /nomad/scorecard
+    read_only: false
 
 cni_networks:
   - name: trust

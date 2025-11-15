@@ -63,7 +63,7 @@ resource "routeros_ip_dns_record" "static_hosts" {
 resource "routeros_ip_dns_record" "static_cnames" {
   for_each = merge([for host, data in var.static_hosts : { for cname in data.cname : cname => host } if length(data.cname) > 0]...)
 
-  name  = format("%s.%s", each.key, var.domain_name)
+  name  = endswith(each.key, ".") ? each.key : format("%s.%s", each.key, var.domain_name)
   type  = "CNAME"
   cname = format("%s.%s", each.value, var.domain_name)
 }
