@@ -232,4 +232,37 @@ static_hosts = {
     mac  = "80:8d:b7:c5:ce:7c"
     addr = "172.16.34.92"
   }
+
+  # BEST Robotics
+  game-a = {
+    mac    = "58:47:CA:70:18:B7"
+    addr   = "10.11.0.10"
+    server = "trust"
+
+    cname = ["pcsm-prod.best."]
+  }
+
+  game-b = {
+    mac    = "58:47:CA:70:18:79"
+    addr   = "10.11.0.11"
+    server = "trust"
+
+    cname = ["pcsm-standby.best."]
+  }
+
+  game-c = {
+    mac    = "1C:83:41:31:91:F2"
+    addr   = "10.11.0.12"
+    server = "trust"
+
+    cname = ["pcsm-rookie.best."]
+  }
+
+  matchclock = {
+    mac    = "F4:4D:30:6F:70:C9"
+    addr   = "10.11.0.13"
+    server = "trust"
+
+    cname = ["matchclock.best."]
+  }
 }
