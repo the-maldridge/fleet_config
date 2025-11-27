@@ -265,4 +265,10 @@ static_hosts = {
 
     cname = ["matchclock.best."]
   }
+
+  winbuild = {
+    mac    = "FC:3F:DB:02:D8:DB"
+    addr   = "10.11.0.14"
+    server = "trust"
+  }
 }
