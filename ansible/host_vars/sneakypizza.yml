@@ -28,13 +28,13 @@ network_static_interfaces:
     type: vlan
     id: 10
     addrs:
-      - 10.0.0.2/20
+      - 10.10.0.2/20
   - name: trust0
     parent: bond0
     type: vlan
     id: 15
     addrs:
-      - 10.1.0.2/20
+      - 10.11.0.2/20
 
 network_input_policy: ACCEPT
 
