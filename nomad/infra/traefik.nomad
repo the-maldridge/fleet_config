@@ -43,8 +43,9 @@ job "traefik" {
           "--entrypoints.lan.address=10.0.0.2:80",
           "--entrypoints.trust.address=10.1.0.2:80",
           "--entrypoints.traefik.address=${NOMAD_IP_admin}:${NOMAD_PORT_admin}",
-          "--providers.nomad.defaultRule=Host(`{{ .Name }}.sneaky.nonroutable.network`)",
           "--providers.nomad=true",
+          "--providers.nomad.defaultRule=Host(`{{ .Name }}.sneaky.nonroutable.network`)",
+          "--providers.nomad.exposedByDefault=false",
         ]
       }
     }
