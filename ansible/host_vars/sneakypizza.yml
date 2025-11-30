@@ -1,7 +1,48 @@
 ---
 ansible_host: 172.16.34.3
 
+network_hostname: sneakyserv
+
+network_static_dns_resolvers:
+  - 172.16.34.1
+
+network_static_routes:
+  - to: default
+    via: 172.16.34.1
+
+network_static_interfaces:
+  - name: bond0
+    type: bond
+    bond_mode: 802.3ad
+    bond_members:
+      - enp0s20f2
+      - enp0s20f3
+  - name: mgmt0
+    type: vlan
+    parent: bond0
+    id: 30
+    addrs:
+      - 172.16.34.3/24
+  - name: lan0
+    parent: bond0
+    type: vlan
+    id: 10
+    addrs:
+      - 10.0.0.2/20
+  - name: trust0
+    parent: bond0
+    type: vlan
+    id: 15
+    addrs:
+      - 10.1.0.2/20
+
 network_input_policy: ACCEPT
+
+cni_networks:
+  - name: trust
+    parent: trust0
+  - name: lan
+    parent: lan0
 
 xbps_repoconf_repos_enabled:
   - 00-repository-main

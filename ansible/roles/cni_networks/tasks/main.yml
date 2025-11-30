@@ -22,7 +22,7 @@
     owner: root
     group: root
     mode: 0755
-  when: cni_networks|default([])
+  when: cni_networks|default([])|length > 0
 
 - name: Install DHCP Service (2/2)
   copy:
@@ -31,11 +31,11 @@
     owner: root
     group: root
     mode: 0755
-  when: cni_networks|default([])
+  when: cni_networks|default([])|length > 0
 
 - name: Enable DHCP Service
   service:
     name: cni-dhcp
     enabled: true
     state: started
-  when: cni_networks|default([])
+  when: cni_networks|default([])|length > 0
