@@ -1,25 +1,25 @@
 variable "datacenter" {
-  type = string
+  type    = string
   default = "SNEAK"
 }
 
 job "grafana" {
-  type = "service"
+  type        = "service"
   datacenters = [var.datacenter]
 
   group "grafana" {
     count = 1
 
     volume "grafana" {
-      type = "host"
+      type      = "host"
       read_only = false
-      source = "grafana_data"
+      source    = "grafana_data"
     }
 
     volume "netauth_config" {
-      type = "host"
+      type      = "host"
       read_only = true
-      source = "netauth_config"
+      source    = "netauth_config"
     }
 
     network {
@@ -28,9 +28,9 @@ job "grafana" {
     }
 
     service {
-      name = "grafana"
+      name     = "grafana"
       provider = "nomad"
-      port = "http"
+      port     = "http"
       tags = [
         "traefik.enable=true",
         "traefik.http.routers.grafana.entrypoints=mgmt",
@@ -41,9 +41,9 @@ job "grafana" {
       driver = "docker"
 
       volume_mount {
-        volume = "grafana"
+        volume      = "grafana"
         destination = "/var/lib/grafana"
-        read_only = false
+        read_only   = false
       }
 
       config {
@@ -51,17 +51,17 @@ job "grafana" {
       }
 
       env {
-        GF_AUTH_ANONYMOUS_ENABLED="true"
-        GF_AUTH_ANONYMOUS_ORG_NAME="Main Org."
-        GF_AUTH_ANONYMOUS_ORG_ROLE="Viewer"
-        GF_AUTH_LDAP_ALLOW_SIGN_UP="true"
-        GF_AUTH_LDAP_CONFIG_FILE="/local/ldap.toml"
-        GF_AUTH_LDAP_ENABLED="true"
-        GF_INSTALL_PLUGINS="victoriametrics-logs-datasource"
+        GF_AUTH_ANONYMOUS_ENABLED  = "true"
+        GF_AUTH_ANONYMOUS_ORG_NAME = "Main Org."
+        GF_AUTH_ANONYMOUS_ORG_ROLE = "Viewer"
+        GF_AUTH_LDAP_ALLOW_SIGN_UP = "true"
+        GF_AUTH_LDAP_CONFIG_FILE   = "/local/ldap.toml"
+        GF_AUTH_LDAP_ENABLED       = "true"
+        GF_INSTALL_PLUGINS         = "victoriametrics-logs-datasource"
       }
 
       template {
-        data = <<EOT
+        data        = <<EOT
 [[servers]]
 host = "localhost"
 port = 389
@@ -87,7 +87,7 @@ org_role = "Editor"
 group_dn = "*"
 org_role = "Viewer"
 EOT
-        perms = 644
+        perms       = 644
         destination = "local/ldap.toml"
       }
     }
@@ -96,9 +96,9 @@ EOT
       driver = "docker"
 
       volume_mount {
-        volume = "netauth_config"
+        volume      = "netauth_config"
         destination = "/etc/netauth"
-        read_only = true
+        read_only   = true
       }
 
       config {

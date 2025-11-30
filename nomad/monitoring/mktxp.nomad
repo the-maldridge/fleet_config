@@ -1,19 +1,19 @@
 variable "datacenter" {
-  type = string
+  type    = string
   default = "SNEAK"
 }
 
 variable "ros_addr" {
-  type = string
+  type    = string
   default = "172.16.34.1"
 }
 
 job "mktxp" {
-  type = "service"
+  type        = "service"
   datacenters = [var.datacenter]
 
   group "exporter" {
-    count =1
+    count = 1
 
     network {
       mode = "bridge"
@@ -21,8 +21,8 @@ job "mktxp" {
     }
 
     service {
-      name = "mktxp"
-      port = "http"
+      name     = "mktxp"
+      port     = "http"
       provider = "nomad"
       tags = [
         "prometheus.enable=true",
@@ -34,12 +34,12 @@ job "mktxp" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/akpw/mktxp:1.2.11"
+        image   = "ghcr.io/akpw/mktxp:1.2.11"
         volumes = ["local:/home/mktxp/mktxp"]
       }
 
       template {
-        data = <<EOT
+        data        = <<EOT
 [edge01]
   hostname = ${var.ros_addr}
   port     = 8278

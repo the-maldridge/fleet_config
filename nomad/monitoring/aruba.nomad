@@ -1,5 +1,5 @@
 variable "datacenter" {
-  type = string
+  type    = string
   default = "SNEAK"
 }
 
@@ -13,12 +13,12 @@ variable "targets" {
 }
 
 variable "comma" {
-  type = string
+  type    = string
   default = ","
 }
 
 job "aruba_exporter" {
-  type = "service"
+  type        = "service"
   datacenters = [var.datacenter]
 
   group "exporter" {
@@ -30,18 +30,18 @@ job "aruba_exporter" {
     }
 
     service {
-      name = "aruba-exporter"
-      port = "http"
+      name     = "aruba-exporter"
+      port     = "http"
       provider = "nomad"
-      tags = ["prometheus.enable=true"]
+      tags     = ["prometheus.enable=true"]
     }
 
     task "exporter" {
       driver = "docker"
 
       config {
-        image = "aruba_exporter:ca30cd6"
-        init = true
+        image   = "aruba_exporter:ca30cd6"
+        init    = true
         command = "/go/aruba_exporter/aruba_exporter"
         args = [
           "-ssh.user=monitor",
@@ -51,11 +51,11 @@ job "aruba_exporter" {
       }
 
       template {
-        data = <<EOT
+        data        = <<EOT
 SSH_PASSWORD={{ with nomadVar "nomad/jobs/aruba_exporter/exporter/exporter" }}{{ .password }}{{ end }}
 EOT
         destination = "secrets/env"
-        env = true
+        env         = true
       }
     }
   }
