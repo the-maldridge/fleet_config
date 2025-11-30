@@ -31,6 +31,10 @@ job "grafana" {
       name = "grafana"
       provider = "nomad"
       port = "http"
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.grafana.entrypoints=mgmt",
+      ]
     }
 
     task "grafana" {

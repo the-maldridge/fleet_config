@@ -25,6 +25,10 @@ job "prometheus" {
       name = "prometheus"
       provider = "nomad"
       port = "http"
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.prometheus.entrypoints=mgmt",
+      ]
     }
 
     task "prometheus" {
