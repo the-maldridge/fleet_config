@@ -3,6 +3,7 @@ static_hosts = {
     mac  = "E0:07:1B:97:15:A0"
     addr = "172.16.34.2"
   }
+
   sneakypizza = {
     mac  = "00:25:90:f4:92:a0"
     addr = "172.16.34.3"
@@ -13,6 +14,21 @@ static_hosts = {
       "traefik",
     ]
   }
+
+  sneakypizza-lan = {
+    mac    = "02:00:00:00:00:00"
+    addr   = "10.10.0.2"
+    server = "lan"
+  }
+
+  sneakypizza-trust = {
+    mac    = "02:01:00:00:00:00"
+    addr   = "10.11.0.2"
+    server = "trust"
+
+    cname = ["pcsmpages.best."]
+  }
+
   sneaky-oob = {
     mac  = "00:25:90:f6:b4:82"
     addr = "172.16.34.4"
@@ -270,5 +286,35 @@ static_hosts = {
     mac    = "FC:3F:DB:02:D8:DB"
     addr   = "10.11.0.14"
     server = "trust"
+  }
+
+  gigacast = {
+    mac    = "9c:6b:00:c3:93:7a"
+    addr   = "10.12.0.8"
+    server = "media"
+  }
+
+  birdkbd0 = {
+    mac    = "20:32:33:ab:1b:f1"
+    addr   = "10.12.0.9"
+    server = "media"
+  }
+
+  bird0 = {
+    mac    = "80:1F:12:F7:7E:0C"
+    addr   = "10.12.0.10"
+    server = "media"
+  }
+
+  bird1 = {
+    mac    = "80:1f:12:37:71:e9"
+    addr   = "10.12.0.11"
+    server = "media"
+  }
+
+  bird2 = {
+    mac    = "80:1f:12:37:1c:e8"
+    addr   = "10.12.0.12"
+    server = "media"
   }
 }

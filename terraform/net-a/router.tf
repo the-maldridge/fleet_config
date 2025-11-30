@@ -5,6 +5,7 @@ module "router" {
   subnets = {
     lan   = "10.10.0.0/20"
     trust = "10.11.0.0/20"
+    media = "10.12.0.0/24"
     mgmt  = "172.16.34.0/24"
   }
   dhcp_lease_time = "3h"

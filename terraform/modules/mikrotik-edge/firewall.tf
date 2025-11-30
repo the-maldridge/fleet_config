@@ -116,22 +116,31 @@ resource "routeros_ip_firewall_filter" "fasttrack_forward" {
   place_before     = routeros_ip_firewall_filter.block_untrusted_to_trusted.id
 }
 
+resource "routeros_ip_firewall_filter" "permit_media_to_trusted" {
+  chain              = "forward"
+  action             = "accept"
+  comment            = "permit-trust-to-trust"
+  in_interface       = routeros_interface_vlan.vlan["media0"].name
+  out_interface_list = routeros_interface_list.trusted_origin.name
+  place_before       = routeros_ip_firewall_filter.block_untrusted_to_trusted.id
+}
+
 resource "routeros_ip_firewall_filter" "permit_trusted_to_untrusted" {
   chain              = "forward"
   action             = "accept"
   comment            = "permit-trust-to-untrust"
   in_interface_list  = routeros_interface_list.trusted_origin.name
   out_interface_list = routeros_interface_list.untrusted_origin.name
-  place_before     = routeros_ip_firewall_filter.block_untrusted_to_trusted.id
+  place_before       = routeros_ip_firewall_filter.block_untrusted_to_trusted.id
 }
 
 resource "routeros_ip_firewall_filter" "permit_untrusted_to_peer" {
-  chain = "forward"
-  action = "accept"
-  comment = "permit-untrust-to-peer"
+  chain             = "forward"
+  action            = "accept"
+  comment           = "permit-untrust-to-peer"
   in_interface_list = routeros_interface_list.untrusted_origin.name
-  out_interface = routeros_interface_vlan.vlan["peer0"].name
-  place_before     = routeros_ip_firewall_filter.block_untrusted_to_trusted.id
+  out_interface     = routeros_interface_vlan.vlan["peer0"].name
+  place_before      = routeros_ip_firewall_filter.block_untrusted_to_trusted.id
 }
 
 resource "routeros_ip_firewall_filter" "block_untrusted_to_trusted" {

@@ -9,6 +9,7 @@ resource "routeros_interface_vlan" "vlan" {
     lan0   = { id = 10, description = "Local Network" }
     trust0 = { id = 15, description = "Trusted Network" }
     wan0   = { id = 20, description = "Default Upstream" }
+    media0 = { id = 25, description = "Media Network" }
     mgmt0  = { id = 30, description = "Management Network" }
     peer0  = { id = 101, description = "Peer Networks" }
     gate0  = { id = 112, description = "Stargate" }
@@ -46,7 +47,7 @@ resource "routeros_interface_list" "trusted_origin" {
 }
 
 resource "routeros_interface_list_member" "trusted_origin" {
-  for_each = { for iface, val in routeros_interface_vlan.vlan : iface => val if contains(["peer0", "mgmt0", "gate0"], iface) }
+  for_each = { for iface, val in routeros_interface_vlan.vlan : iface => val if contains(["peer0", "mgmt0", "media0", "gate0"], iface) }
 
   list      = routeros_interface_list.trusted_origin.name
   interface = routeros_interface_vlan.vlan[each.key].name
