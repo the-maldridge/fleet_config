@@ -1,0 +1,280 @@
+net : Network Core {
+  style.stroke: darkmagenta
+  ccr : CCR2004 {
+    sfp1
+    sfp3
+    sfp4
+    sfp5
+    sfp6
+    sfp11
+    sfp12
+  }
+
+  sw0 : Switch0 {
+    1 : P1 (GAME-A)
+    2 : P2 (GAME-B)
+    3 : P3 (GAME-C)
+    4 : P4 (MATCHCLOCK)
+    12 : P12 (WinBuild)
+
+    13 : P13 (Gigacast)
+    14 : P14 (BIRDKBD0)
+    17 : P17 (AP)
+    18 : P18 (UPS)
+
+    25
+    26
+  }
+
+  ccr.sfp11 -> sw0.25 : DAC+
+  ccr.sfp12 -> sw0.26 : DAC+
+}
+
+icx0 : ICX0 (Production) {
+  style.stroke: darkmagenta
+  1/1/1
+  1/1/2
+
+  1/1/3-11 {
+    style.multiple: true
+  }
+
+  1/3/1
+}
+
+icx1 : ICX1 (Scoring) {
+  style.stroke: darkmagenta
+  1/1/1
+  1/1/2
+  1/1/3
+  1/1/4
+  1/1/12
+
+  1/3/1
+  1/3/2
+}
+
+icx2 : ICX2 (Pits 1) {
+  style.stroke: darkmagenta
+  1/1/1
+  1/1/2
+  1/1/12
+
+  1/3/1
+}
+
+icx3 : ICX3 (Pits 2) {
+  style.stroke: darkmagenta
+  1/1/1
+  1/1/2
+  1/1/12
+
+  1/3/1
+}
+
+icx4 : ICX4 (Fields) {
+  style.stroke: darkmagenta
+  1/1/1
+  1/1/2
+  1/1/3
+
+  1/3/1
+}
+
+att_wan : AT&T WAN {
+  icon: https://icons.terrastruct.com/azure%2FNetworking%20Service%20Color%2FVirtual%20WANs.svg
+  style.fill: mistyrose
+}
+
+ap0 : Root AP {
+  icon: https://icons.terrastruct.com/essentials%2F104-wifi.svg
+  style.stroke: darkmagenta
+  style.fill: mistyrose
+}
+
+ap1 : Aruba1 {
+  icon: https://icons.terrastruct.com/essentials%2F104-wifi.svg
+  style.stroke: darkmagenta
+  style.fill: mistyrose
+}
+
+ap2 : Aruba2 {
+  icon: https://icons.terrastruct.com/essentials%2F104-wifi.svg
+  style.stroke: darkmagenta
+  style.fill: mistyrose
+}
+
+ap3 : Aruba3 {
+  icon: https://icons.terrastruct.com/essentials%2F104-wifi.svg
+  style.stroke: darkmagenta
+  style.fill: mistyrose
+}
+
+ups0 : UPS {
+  icon: https://icons.terrastruct.com/tech%2Fpower.svg
+  style.stroke: darkmagenta
+  style.fill: mistyrose
+}
+
+winbuild : Windows Build {
+  icon: https://icons.terrastruct.com/dev%2Fwindows.svg
+  style.stroke: darkmagenta
+  style.fill: mistyrose
+}
+
+game_a : Game-A {
+  icon: https://icons.terrastruct.com/tech%2F065-monitor-4.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+game_b : Game-B {
+  icon: https://icons.terrastruct.com/tech%2F065-monitor-4.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+game_c : Game-C {
+  icon: https://icons.terrastruct.com/tech%2F065-monitor-4.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+clock_tablet : Clock Tablet {
+  icon: https://icons.terrastruct.com/tech%2F079-tablet-1.svg
+  style.stroke: darkmagenta
+  style.fill: "#f0fff0"
+}
+
+score_1 : Score 1 {
+  icon: https://icons.terrastruct.com/tech%2Flaptop.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+score_2 : Score 2 {
+  icon: https://icons.terrastruct.com/tech%2Flaptop.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+score_3 : Score 3 {
+  icon: https://icons.terrastruct.com/tech%2Flaptop.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+lookup_1 : Lookup 1 {
+  icon: https://icons.terrastruct.com/tech%2Flaptop.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+lookup_2 : Lookup 2 {
+  icon: https://icons.terrastruct.com/tech%2Flaptop.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+lookup_3 : Lookup 3 {
+  icon: https://icons.terrastruct.com/tech%2Flaptop.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+lookup_4 : Lookup 4 {
+  icon: https://icons.terrastruct.com/tech%2Flaptop.svg
+  style.stroke: aquamarine
+  style.fill: "#f0fff0"
+}
+
+source_0 : Source0 {
+  icon: https://icons.terrastruct.com/essentials%2F036-play%20button.svg
+  style.stroke: darkmagenta
+  style.fill: lightgoldenrodyellow
+}
+
+source_1 : Source1 {
+  icon: https://icons.terrastruct.com/essentials%2F036-play%20button.svg
+  style.stroke: darkmagenta
+  style.fill: lightgoldenrodyellow
+}
+
+matchclock : Match Clock {
+  icon: https://icons.terrastruct.com/essentials%2F213-alarm.svg
+  style.stroke: darkmagenta
+  style.fill: lightgoldenrodyellow
+}
+
+media : Media Production {
+  icon: https://icons.terrastruct.com/essentials%2F002-video%20player.svg
+  style.fill: lightgoldenrodyellow
+}
+
+gcast : Gigacast {
+  icon: https://icons.terrastruct.com/tech%2F065-monitor-4.svg
+  style.stroke: darkmagenta
+  style.fill: lightgoldenrodyellow
+}
+
+birdkbd0 : BirdDog Keyboard {
+  icon: https://icons.terrastruct.com/essentials%2F178-controls.svg
+  style.stroke: darkmagenta
+  style.fill: lightgoldenrodyellow
+}
+
+bird0 : Bird0 {
+  icon: https://icons.terrastruct.com/essentials%2F012-video%20camera.svg
+  style.stroke: darkmagenta
+  style.fill: lightgoldenrodyellow
+}
+
+bird1 : Bird1 {
+  icon: https://icons.terrastruct.com/essentials%2F012-video%20camera.svg
+  style.stroke: darkmagenta
+  style.fill: lightgoldenrodyellow
+}
+
+bird2 : Bird2 {
+  icon: https://icons.terrastruct.com/essentials%2F012-video%20camera.svg
+  style.stroke: darkmagenta
+  style.fill: lightgoldenrodyellow
+}
+
+att_wan -> net.ccr.sfp1 : 5GBase-T
+net.sw0.1 -> game_a : 1GBase-T
+net.sw0.2 -> game_b : 1GBase-T
+net.sw0.3 -> game_c : 1GBase-T
+net.sw0.4 -> matchclock : 1GBase-T
+net.sw0.12 -> winbuild : 1GBase-T
+net.sw0.13 -> gcast : 1GBase-T
+net.sw0.14 -> birdkbd0 : 1GBase-T
+net.sw0.17 -> ap0 : 1GBase-T
+net.sw0.18 -> ups0 : 1GBase-T
+
+net.ccr.sfp3 -> icx0.1/3/1 : AOC
+icx0.1/1/1 -> source_0 : 1GBase-T
+icx0.1/1/2 -> source_1 : 1GBase-T
+icx0.1/1/3-11 -> media : 1GBase-T
+
+net.ccr.sfp4 -> icx1.1/3/1 : 1GBase-SX
+icx1.1/1/1 -> score_1 : 1GBase-T
+icx1.1/1/2 -> score_2 : 1GBase-T
+icx1.1/1/3 -> score_3 : 1GBase-T
+icx1.1/1/4 -> clock_tablet : 1GBase-T
+icx1.1/1/12 -> ap1 : 1GBase-T
+icx1.1/3/2 -> icx2.1/3/1 : 1GBase-SX
+
+icx2.1/1/1 -> lookup_1 : 1GBase-T
+icx2.1/1/2 -> lookup_2 : 1GBase-T
+icx2.1/1/12 -> ap2 : 1GBase-T
+
+net.ccr.sfp5 -> icx3.1/3/1 : 1GBase-SX
+icx3.1/1/1 -> lookup_3 : 1Gbase-T
+icx3.1/1/2 -> lookup_4 : 1Gbase-T
+icx3.1/1/12 -> ap3 : 1GBase-T
+
+net.ccr.sfp6 -> icx4.1/3/1 : 1GBase-SX
+icx4.1/1/1 -> bird0 : 1GBase-T
+icx4.1/1/2 -> bird1 : 1GBase-T
+icx4.1/1/3 -> bird2 : 1GBase-T
