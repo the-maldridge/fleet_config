@@ -1,3 +1,5 @@
 ansible/venv
 ansible/assets/sddm_background.png
 ansible/assets/vcfsw_background.png
+docs/**/*.svg
+docs/**/*.png
