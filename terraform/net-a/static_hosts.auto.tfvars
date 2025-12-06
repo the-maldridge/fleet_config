@@ -288,6 +288,24 @@ static_hosts = {
     server = "trust"
   }
 
+  source0 = {
+    mac    = "50:9a:4c:3a:2a:57"
+    addr   = "10.12.0.5"
+    server = "media"
+  }
+
+  source1 = {
+    mac    = "54:48:10:e2:30:6b"
+    addr   = "10.12.0.6"
+    server = "media"
+  }
+
+  gigacast-oob = {
+    mac    = "9C:6B:00:C3:9C:68"
+    addr   = "10.12.0.7"
+    server = "media"
+  }
+
   gigacast = {
     mac    = "9c:6b:00:c3:93:7a"
     addr   = "10.12.0.8"
