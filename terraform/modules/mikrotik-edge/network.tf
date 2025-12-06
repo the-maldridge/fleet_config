@@ -103,6 +103,28 @@ resource "routeros_interface_list_member" "supplemental_upstream" {
   interface = each.value.name
 }
 
+resource "routeros_interface_list" "outbound" {
+  # Used for all interfaces that leave the router to other places.
+  name = "outbound"
+}
+
+resource "routeros_interface_list_member" "default_outbound_upstream" {
+  list      = routeros_interface_list.outbound.name
+  interface = routeros_interface_vlan.vlan["wan0"].name
+}
+
+resource "routeros_interface_list_member" "outbound_peer" {
+  list      = routeros_interface_list.outbound.name
+  interface = routeros_interface_vlan.vlan["peer0"].name
+}
+
+resource "routeros_interface_list_member" "outbound_supplemental_upstream" {
+  for_each = routeros_interface_vlan.upstream
+
+  list      = routeros_interface_list.outbound.name
+  interface = each.value.name
+}
+
 resource "routeros_ip_address" "local" {
   for_each = var.subnets
 
