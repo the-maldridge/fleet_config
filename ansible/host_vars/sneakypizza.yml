@@ -72,3 +72,6 @@ nomad_volumes:
   - name: terrastate_data
     path: /nomad/terrastate
     read_only: false
+  - name: awardcast_data
+    path: /nomad/awardcast
+    read_only: false

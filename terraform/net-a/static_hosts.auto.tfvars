@@ -26,7 +26,10 @@ static_hosts = {
     addr   = "10.11.0.2"
     server = "trust"
 
-    cname = ["pcsmpages.best."]
+    cname = [
+      "awardcast.best.",
+      "pcsmpages.best.",
+    ]
   }
 
   sneaky-oob = {
