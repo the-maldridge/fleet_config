@@ -21,13 +21,13 @@ static_hosts = {
 
   sneakyserv-lan = {
     mac    = "02:00:00:00:00:00"
-    addr   = "10.0.0.2"
+    addr   = "100.64.16.2"
     server = "lan"
   }
 
   sneakyserv-trust = {
     mac    = "02:01:00:00:00:00"
-    addr   = "10.1.0.2"
+    addr   = "100.64.32.2"
     server = "trust"
 
     cname = ["scorecard.best."]
@@ -381,26 +381,6 @@ static_hosts = {
   light-cannon = {
     mac  = "bc:c3:42:88:79:c4"
     addr = "172.16.31.91"
-  }
-
-  droidcam1 = {
-    mac  = "fc:93:6b:8a:c6:36"
-    addr = "172.16.31.92"
-  }
-
-  cam1 = {
-    mac  = "ec:71:db:dc:0f:be"
-    addr = "172.16.31.93"
-  }
-
-  cam2 = {
-    mac  = "ec:71:db:5f:79:e8"
-    addr = "172.16.31.94"
-  }
-
-  cam3 = {
-    mac  = "EC:71:DB:82:BA:AF"
-    addr = "172.16.31.95"
   }
 
   icx00 = {

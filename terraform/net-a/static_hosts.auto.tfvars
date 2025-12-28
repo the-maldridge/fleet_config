@@ -10,26 +10,20 @@ static_hosts = {
     cname = [
       "files",
       "netauth",
-      "pcsmpages",
       "traefik",
     ]
   }
 
   sneakypizza-lan = {
     mac    = "02:00:00:00:00:00"
-    addr   = "10.10.0.2"
+    addr   = "100.64.10.2"
     server = "lan"
   }
 
   sneakypizza-trust = {
     mac    = "02:01:00:00:00:00"
-    addr   = "10.11.0.2"
+    addr   = "100.64.16.2"
     server = "trust"
-
-    cname = [
-      "awardcast.best.",
-      "pcsmpages.best.",
-    ]
   }
 
   sneaky-oob = {
@@ -252,90 +246,38 @@ static_hosts = {
     addr = "172.16.34.92"
   }
 
-  # BEST Robotics
-  game-a = {
-    mac    = "58:47:CA:70:18:B7"
-    addr   = "10.11.0.10"
-    server = "trust"
-
-    cname = ["pcsm-prod.best."]
-  }
-
-  game-b = {
-    mac    = "58:47:CA:70:18:79"
-    addr   = "10.11.0.11"
-    server = "trust"
-
-    cname = ["pcsm-standby.best."]
-  }
-
-  game-c = {
-    mac    = "1C:83:41:31:91:F2"
-    addr   = "10.11.0.12"
-    server = "trust"
-
-    cname = ["pcsm-rookie.best."]
-  }
-
-  matchclock = {
-    mac    = "F4:4D:30:6F:70:C9"
-    addr   = "10.11.0.13"
-    server = "trust"
-
-    cname = ["matchclock.best."]
-  }
-
-  winbuild = {
-    mac    = "FC:3F:DB:02:D8:DB"
-    addr   = "10.11.0.14"
-    server = "trust"
-  }
-
-  source0 = {
-    mac    = "50:9a:4c:3a:2a:57"
-    addr   = "10.12.0.5"
-    server = "media"
-  }
-
-  source1 = {
-    mac    = "54:48:10:e2:30:6b"
-    addr   = "10.12.0.6"
-    server = "media"
-  }
-
   gigacast-oob = {
     mac    = "9C:6B:00:C3:9C:68"
-    addr   = "10.12.0.7"
-    server = "media"
+    addr   = "172.16.34.8"
   }
 
   gigacast = {
     mac    = "9c:6b:00:c3:93:7a"
-    addr   = "10.12.0.8"
+    addr   = "192.0.2.8"
     server = "media"
   }
 
   birdkbd0 = {
     mac    = "20:32:33:ab:1b:f1"
-    addr   = "10.12.0.9"
+    addr   = "192.0.2.9"
     server = "media"
   }
 
   bird0 = {
     mac    = "80:1F:12:F7:7E:0C"
-    addr   = "10.12.0.10"
+    addr   = "192.0.2.10"
     server = "media"
   }
 
   bird1 = {
     mac    = "80:1f:12:37:71:e9"
-    addr   = "10.12.0.11"
+    addr   = "192.0.2.11"
     server = "media"
   }
 
   bird2 = {
     mac    = "80:1f:12:37:1c:e8"
-    addr   = "10.12.0.12"
+    addr   = "192.0.2.12"
     server = "media"
   }
 }
