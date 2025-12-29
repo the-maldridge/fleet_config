@@ -247,8 +247,8 @@ static_hosts = {
   }
 
   gigacast-oob = {
-    mac    = "9C:6B:00:C3:9C:68"
-    addr   = "172.16.34.8"
+    mac  = "9C:6B:00:C3:9C:68"
+    addr = "172.16.34.8"
   }
 
   gigacast = {
@@ -278,6 +278,12 @@ static_hosts = {
   bird2 = {
     mac    = "80:1f:12:37:1c:e8"
     addr   = "192.0.2.12"
+    server = "media"
+  }
+
+  bird3 = {
+    mac    = "80:1f:12:37:2f:0a"
+    addr   = "192.0.2.13"
     server = "media"
   }
 }
