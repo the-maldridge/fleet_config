@@ -29,6 +29,8 @@ resource "routeros_ip_dhcp_server" "server" {
   comment            = format("%s Default DHCP Server", upper(each.key))
   conflict_detection = true
   lease_time         = var.dhcp_lease_time
+
+  dynamic_lease_identifiers = "client-mac,client-id"
 }
 
 resource "routeros_ip_dhcp_server_network" "network" {

@@ -94,9 +94,10 @@ resource "routeros_ip_firewall_filter" "local_dns" {
 }
 
 resource "routeros_ip_firewall_filter" "default_drop" {
-  chain   = "input"
-  action  = "drop"
-  comment = "default-deny"
+  chain    = "input"
+  action   = "drop"
+  comment  = "default-deny"
+  disabled = var.bootstrap
 }
 
 resource "routeros_ip_firewall_nat" "srcnat" {
@@ -112,7 +113,7 @@ resource "routeros_ip_firewall_filter" "fasttrack_forward" {
   action           = "fasttrack-connection"
   connection_state = "established,related"
   comment          = "forward-fasttracked"
-  hw_offload       = true
+  hw_offload       = var.hardware_offload
   place_before     = routeros_ip_firewall_filter.accept_established_forward.id
 }
 
@@ -179,7 +180,8 @@ resource "routeros_ip_firewall_filter" "permit_local_to_outbound" {
 }
 
 resource "routeros_ip_firewall_filter" "default_drop_forward" {
-  chain   = "forward"
-  action  = "drop"
-  comment = "default-drop"
+  chain    = "forward"
+  action   = "drop"
+  comment  = "default-drop"
+  disabled = var.bootstrap
 }

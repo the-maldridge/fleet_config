@@ -4,13 +4,22 @@ resource "routeros_ip_firewall_addr_list" "local" {
   comment = "Local Networks"
 }
 
+resource "routeros_routing_bgp_instance" "stargate" {
+  as        = 64582
+  name      = "Stargate"
+  comment   = "Stargate"
+  router_id = var.router_id
+}
+
+
 resource "routeros_routing_bgp_connection" "stargate" {
   as = 64582
 
-  name           = "stargate"
-  connect        = true
-  listen         = true
-  router_id      = var.router_id
+  name     = "stargate"
+  connect  = true
+  listen   = true
+  instance = routeros_routing_bgp_instance.stargate.name
+
   hold_time      = "30s"
   keepalive_time = "10s"
   nexthop_choice = "force-self"

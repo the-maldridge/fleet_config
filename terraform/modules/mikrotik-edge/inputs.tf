@@ -1,3 +1,9 @@
+variable "bootstrap" {
+  type        = bool
+  default     = false
+  description = "Enable bootstrap mode"
+}
+
 variable "hostname" {
   type        = string
   default     = "Mikrotik"
@@ -7,6 +13,12 @@ variable "hostname" {
 variable "subnets" {
   type        = map(any)
   description = "Map of network to subnet"
+}
+
+variable "hardware_offload" {
+  type        = bool
+  default     = null
+  description = "Enable fasttrack hardware offloading"
 }
 
 variable "additional_upstreams" {
