@@ -9,6 +9,11 @@ static_hosts = {
     mac  = "48:a9:8a:ad:2b:2c"
   }
 
+  terrastate = {
+    addr = "172.16.35.5"
+    mac  = "02:1B:EF:C6:BB:C3"
+  }
+
   fleet00 = {
     mac  = "e4:42:a6:19:ec:13"
     addr = "172.16.35.50"

@@ -35,3 +35,35 @@ module "router" {
 
   static_hosts = var.static_hosts
 }
+
+resource "macaddress" "terrastate" {}
+
+module "terrastate" {
+  source = "../modules/mikrotik-container"
+
+  name          = "tfstate"
+  bridge        = module.router.bridge_name
+  container_mac = macaddress.terrastate.address
+  vlan          = 30
+
+  image    = "ghcr.io/the-maldridge/terrastate:v1.2.5"
+  cmd      = "/terrastate"
+  root_dir = "/sd1/containers/terrastate/root"
+
+  env = {
+    AUTHWARE_HTPASSWD_FILE = "/auth/htpasswd"
+    AUTHWARE_HTGROUP_FILE  = "/auth/htgroup"
+    TS_BITCASK_PATH        = "/data"
+  }
+
+  mounts = {
+    auth = {
+      src = "/sd1/containers/terrastate/auth"
+      dst = "/auth"
+    }
+    data = {
+      src = "/sd1/containers/terrastate/data"
+      dst = "/data"
+    }
+  }
+}
