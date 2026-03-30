@@ -1,0 +1,17 @@
+---
+- name: Install Ignores File
+  ansible.builtin.template:
+    src: 50-ignores.conf
+    dest: /etc/xbps.d/
+    owner: root
+    group: root
+    mode: "0644"
+  when:
+    - xbps_ignore_packages | length > 0
+  tags: [configure_xbps_ignores]
+
+- name: Remove Ignored Packages
+  community.general.xbps:
+    name: "{{ xbps_ignore_packages }}"
+    state: absent
+  tags: [configure_xbps_ignores]

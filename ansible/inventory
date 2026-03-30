@@ -1,5 +1,6 @@
 [netauth_server]
 sneakypizza
+lanbox
 
 [nomad:children]
 nomad_server
@@ -7,6 +8,7 @@ nomad_server
 [nomad_server]
 sneakyserv
 sneakypizza
+lanbox
 
 [fleet:children]
 fleet_base
@@ -38,7 +40,9 @@ fleet-media-b
 
 [musl]
 sneakyserv
+lanbox
 
 [static_net]
 sneakyserv
 sneakypizza
+lanbox

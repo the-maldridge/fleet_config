@@ -1,0 +1,56 @@
+---
+ansible_host: 172.16.35.3
+
+network_input_policy: ACCEPT
+
+network_hostname: lanbox
+
+network_static_dns_resolvers:
+  - 172.16.35.1
+
+network_static_routes:
+  - to: default
+    via: 172.16.35.1
+
+network_static_interfaces:
+  - name: enp1s0
+    type: trunk
+  - name: mgmt0
+    type: vlan
+    parent: enp1s0
+    id: 30
+    addrs:
+      - 172.16.35.3/24
+  - name: lan0
+    parent: enp1s0
+    type: vlan
+    id: 10
+    addrs:
+      - 100.64.16.2/20
+  - name: trust0
+    parent: enp1s0
+    type: vlan
+    id: 15
+    addrs:
+      - 100.64.32.2/20
+
+cni_networks:
+  - name: trust
+    parent: trust0
+  - name: lan
+    parent: lan0
+
+xbps_ignore_packages:
+  - ipw2100-firmware
+  - ipw2200-firmware
+  - iw
+  - linux-firmware-amd
+  - linux-firmware-broadcom
+  - linux-firmware-nvidia
+  - wpa_supplicant
+  - zd1211-firmware
+  - void-artwork
+
+xbps_ignore_noextracts:
+  - '/usr/lib/firmware/*'
+  - '!/usr/lib/firmware/rtl_nic/rtl8168h*'

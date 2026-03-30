@@ -6,6 +6,7 @@
   roles:
     - ssh_keys
     - xbps-repoconf
+    - xbps_ignore
     - void.network.dns
     - mmc_drivers
     - chrony
