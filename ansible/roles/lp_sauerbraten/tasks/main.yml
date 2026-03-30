@@ -1,0 +1,88 @@
+---
+- name: Create Webroot
+  ansible.builtin.file:
+    path: /srv/www/sauerbraten
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags: [install_sauerbraten]
+
+- name: Install NGINX Configuration
+  ansible.builtin.copy:
+    src: sauerbraten.conf
+    dest: /etc/nginx/conf.d/sauerbraten.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - nginx
+  tags: [install_sauerbraten]
+
+- name: Install Server
+  community.general.xbps:
+    name: sauerbraten-server
+    state: present
+  tags: [install_sauerbraten]
+
+- name: Create Data Directories
+  ansible.builtin.file:
+    path: /etc/sauerbraten-{{ item.slug }}
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop: "{{ sauerbraten_servers }}"
+  loop_control:
+    label: "{{ item.slug }}"
+  tags: [install_sauerbraten]
+
+- name: Install server-init.cfg
+  ansible.builtin.template:
+    src: server-init.cfg
+    dest: /etc/sauerbraten-{{ item.slug }}/server-init.cfg
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ sauerbraten_servers }}"
+  loop_control:
+    label: "{{ item.slug }}"
+  tags: [install_sauerbraten, configure_sauerbraten]
+
+- name: Create Services (1/2)
+  ansible.builtin.file:
+    path: /etc/sv/sauerbraten-{{ item.slug }}
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop: "{{ sauerbraten_servers }}"
+  loop_control:
+    label: "{{ item.slug }}"
+  tags: [install_sauerbraten]
+
+- name: Create Services (2/2)
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      exec 2>&1
+      cd /etc/sauerbraten-{{ item.slug }} || exit 1
+      exec /usr/bin/sauer_server
+    dest: /etc/sv/sauerbraten-{{ item.slug }}/run
+    owner: root
+    group: root
+    mode: "0755"
+  loop: "{{ sauerbraten_servers }}"
+  loop_control:
+    label: "{{ item.slug }}"
+  tags: [install_sauerbraten]
+
+- name: Enable Service
+  ansible.builtin.service:
+    name: sauerbraten-{{ item.slug }}
+    state: started
+    enabled: true
+  loop: "{{ sauerbraten_servers }}"
+  loop_control:
+    label: "{{ item.slug }}"
+  tags: [install_sauerbraten]

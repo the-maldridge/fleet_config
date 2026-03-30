@@ -1,0 +1,9 @@
+---
+- name: Services for LAN Party
+  hosts:
+    - lanparty
+  become: true
+  become_user: root
+  become_method: ansible.builtin.sudo
+  roles:
+    - lp_sauerbraten

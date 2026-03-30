@@ -1,0 +1,17 @@
+---
+sauerbraten_servers:
+  - slug: instagib
+    motd: MAL - Instagib
+    serverip: 100.64.32.3
+  - slug: team-dm
+    motd: MAL - Team Deathmatch
+    serverip: 100.64.32.4
+  - slug: ctf
+    motd: MAL - Capture the Flag
+    serverip: 100.64.32.5
+  - slug: ffa
+    motd: MAL - Free For All
+    serverip: 100.64.32.6
+  - slug: capture
+    motd: MAL - Control Points
+    serverip: 100.64.32.7

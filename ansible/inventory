@@ -2,6 +2,9 @@
 sneakypizza
 lanbox
 
+[lanparty]
+lanbox
+
 [nomad:children]
 nomad_server
 

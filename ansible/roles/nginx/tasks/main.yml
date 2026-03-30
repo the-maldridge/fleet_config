@@ -1,0 +1,33 @@
+---
+- name: Install Packages
+  community.general.xbps:
+    name: nginx
+    state: present
+  tags: [install_nginx]
+
+- name: Ensure /etc/nginx/conf.d/
+  ansible.builtin.file:
+    path: /etc/nginx/conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  tags: [install_nginx]
+
+- name: Install Base Configuration
+  ansible.builtin.copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - nginx
+  tags: [install_nginx, configure_nginx]
+
+- name: Enable Service
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
+  tags: [install_nginx, enable_nginx]
