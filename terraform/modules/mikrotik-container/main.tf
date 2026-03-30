@@ -29,6 +29,7 @@ resource "routeros_container_envs" "envs" {
 
 resource "routeros_container" "container" {
   comment       = var.name
+  file          = var.file
   remote_image  = var.image
   cmd           = var.cmd
   interface     = routeros_interface_veth.interface.name

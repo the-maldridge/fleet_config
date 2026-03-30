@@ -21,7 +21,14 @@ variable "vlan" {
 
 variable "image" {
   type        = string
-  description = "Container Image to run"
+  description = "Container Image to run (registry path)"
+  default     = null
+}
+
+variable "file" {
+  type        = string
+  description = "Container Image to run (file path)"
+  default     = null
 }
 
 variable "cmd" {

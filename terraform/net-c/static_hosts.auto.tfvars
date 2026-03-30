@@ -4,6 +4,11 @@ static_hosts = {
     addr = "172.16.35.2"
   }
 
+  lanbox = {
+    mac  = "A4:BB:6D:22:5B:7A"
+    addr = "172.16.35.3"
+  }
+
   optimux = {
     addr = "172.16.35.4"
     mac  = "48:a9:8a:ad:2b:2c"
