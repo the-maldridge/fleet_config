@@ -16,14 +16,17 @@ static_hosts = {
 
   sneakypizza-lan = {
     mac    = "02:00:00:00:00:00"
-    addr   = "100.64.10.2"
+    addr   = "100.64.16.2"
     server = "lan"
   }
 
   sneakypizza-trust = {
     mac    = "02:01:00:00:00:00"
-    addr   = "100.64.16.2"
+    addr   = "100.64.32.2"
     server = "trust"
+    cname = [
+      "pyramid.vcf.",
+    ]
   }
 
   sneaky-oob = {
