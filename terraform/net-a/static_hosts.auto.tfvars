@@ -81,6 +81,11 @@ static_hosts = {
     addr = "172.16.34.16"
   }
 
+  icxWall = {
+    mac  = "D4:C1:9E:89:D4:2A"
+    addr = "172.16.34.17"
+  }
+
   pagepro = {
     mac  = "00:D0:5F:02:5B:C9"
     addr = "172.16.34.19"
