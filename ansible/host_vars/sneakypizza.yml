@@ -75,3 +75,6 @@ nomad_volumes:
   - name: awardcast_data
     path: /nomad/awardcast
     read_only: false
+  - name: pyramid_data
+    path: /nomad/pyramid25
+    read_only: false
