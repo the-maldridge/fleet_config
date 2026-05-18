@@ -75,6 +75,15 @@
     mode: "0755"
   tags: [configure_vcfsw_user]
 
+- name: Create ~/bin
+  ansible.builtin.file:
+    path: /home/vcfsw/bin
+    state: directory
+    owner: vcfsw
+    group: vcfsw
+    mode: "0755"
+  tags: [configure_vcfsw_user]
+
 - name: Install QBASIC
   ansible.builtin.file:
     path: /home/vcfsw/drive_c/DOS
@@ -125,7 +134,7 @@
       [Desktop Entry]
       Type=Application
       Name=QBASIC
-      Exec=/home/vcfsw/qbasic.sh
+      Exec=/home/vcfsw/bin/qbasic.sh
       Categories=Development
     dest: /home/vcfsw/.local/share/applications/qbasic.desktop
     owner: vcfsw
@@ -137,9 +146,52 @@
   ansible.builtin.copy:
     content: |
       #!/bin/sh
-      cd drive_c
+      cd ~/drive_c
       dosbox -c "MOUNT C ." -c "SET PATH=Z:;C:\DOS;" -c qbasic.exe
-    dest: /home/vcfsw/qbasic.sh
+    dest: /home/vcfsw/bin/qbasic.sh
+    owner: root
+    group: root
+    mode: "0755"
+  tags: [configure_vcfsw_qbasic]
+
+- name: Install QBASIC Workshop (Desktop File)
+  ansible.builtin.copy:
+    content: |
+      [Desktop Entry]
+      Type=Application
+      Name=QBASIC (Workshop)
+      Exec=/home/vcfsw/bin/workshop.sh
+      Categories=Development
+    dest: /home/vcfsw/.local/share/applications/workshop.desktop
+    owner: vcfsw
+    group: vcfsw
+    mode: "0644"
+  tags: [configure_vcfsw_qbasic]
+
+- name: Install QBASIC Workshop (Configure DOSBox)
+  ansible.builtin.copy:
+    content: |
+      [sdl]
+      output = opengl
+      windowresolution = 1024x768
+
+      [autoexec]
+      MOUNT C .
+      C:
+      autoexec.bat
+    dest: /home/vcfsw/c-pdq/dosbox.conf
+    owner: vcfsw
+    group: vcfsw
+    mode: "0644"
+  tags: [configure_vcfsw_qbasic]
+
+- name: Install QBASIC Workshop (Script File)
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      cd ~/c-pdq
+      dosbox
+    dest: /home/vcfsw/bin/workshop.sh
     owner: root
     group: root
     mode: "0755"
