@@ -185,7 +185,18 @@ resource "routeros_ip_firewall_filter" "permit_local_to_outbound" {
   comment            = "permit-local-to-outbound"
   in_interface_list  = routeros_interface_list.local.name
   out_interface_list = routeros_interface_list.outbound.name
-  place_before       = routeros_ip_firewall_filter.default_drop_forward.id
+  place_before       = var.cme_addr != "127.0.0.1" ? routeros_ip_firewall_filter.permit_sccp_to_cme[0].id : routeros_ip_firewall_filter.default_drop_forward.id
+}
+
+resource "routeros_ip_firewall_filter" "permit_sccp_to_cme" {
+  count = var.cme_addr != "127.0.0.1" ? 1 : 0
+
+  chain             = "forward"
+  action            = "accept"
+  comment           = "permit-sccp-to-cme"
+  in_interface_list = routeros_interface_list.local.name
+  dst_address       = var.cme_addr
+  place_before      = routeros_ip_firewall_filter.default_drop_forward.id
 }
 
 resource "routeros_ip_firewall_filter" "default_drop_forward" {
