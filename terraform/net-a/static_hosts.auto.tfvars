@@ -29,6 +29,12 @@ static_hosts = {
     ]
   }
 
+  sneakypizza-media = {
+    mac    = "02:02:00:00:00:00"
+    addr   = "192.0.2.2"
+    server = "media"
+  }
+
   sneaky-oob = {
     mac  = "00:25:90:f6:b4:82"
     addr = "172.16.34.4"
@@ -87,16 +93,6 @@ static_hosts = {
   icxWall = {
     mac  = "D4:C1:9E:89:D4:2A"
     addr = "172.16.34.17"
-  }
-
-  pagepro = {
-    mac  = "00:D0:5F:02:5B:C9"
-    addr = "172.16.34.19"
-  }
-
-  oam7 = {
-    mac  = "52:54:00:03:86:B2"
-    addr = "172.16.34.20"
   }
 
   fleet00 = {
@@ -267,6 +263,18 @@ static_hosts = {
   gigacast-oob = {
     mac  = "9C:6B:00:C3:9C:68"
     addr = "172.16.34.8"
+  }
+
+  pagepro = {
+    mac    = "00:D0:5F:02:5B:C9"
+    addr   = "192.0.2.5"
+    server = "media"
+  }
+
+  oam7 = {
+    mac    = "52:54:00:03:86:B2"
+    addr   = "192.0.2.6"
+    server = "media"
   }
 
   gigacast = {
