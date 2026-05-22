@@ -16,7 +16,8 @@ module "router" {
   router_id    = "169.255.255.8"
   domain_name  = "sneaky.nonroutable.network"
 
-  cme_addr = "172.16.34.5"
+  cme_addr   = "172.16.34.5"
+  i2004_addr = "172.16.30.5"
 
   ports = {
     mgmt = ["ether1", "sfp-sfpplus9"]

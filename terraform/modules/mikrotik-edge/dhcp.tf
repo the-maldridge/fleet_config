@@ -7,17 +7,29 @@ resource "routeros_ip_pool" "pool" {
 }
 
 resource "routeros_ip_dhcp_server_option" "cme_addr" {
+  count = var.cme_addr != null ? 1 : 0
+
   code    = 150
   name    = "cisco-telephony"
   value   = "'${var.cme_addr}'"
   comment = "cisco-telephony"
 }
 
+resource "routeros_ip_dhcp_server_option" "i2004_addr" {
+  count = var.i2004_addr != null ? 1 : 0
+
+  code    = 128
+  name    = "nortel-i2004"
+  value   = "'Nortel-i2004-A,${var.i2004_addr}:7000,1,10.'"
+  comment = "nortel-telephony"
+}
+
 resource "routeros_ip_dhcp_server_option_set" "telephony" {
   name = "telephony"
-  options = join(",", [
-    routeros_ip_dhcp_server_option.cme_addr.name,
-  ])
+  options = join(",", flatten([
+    var.cme_addr != null ? [routeros_ip_dhcp_server_option.cme_addr[0].name] : [],
+    var.i2004_addr != null ? [routeros_ip_dhcp_server_option.i2004_addr[0].name] : [],
+  ]))
 }
 
 resource "routeros_ip_dhcp_server" "server" {

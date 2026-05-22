@@ -108,5 +108,11 @@ variable "static_hosts" {
 variable "cme_addr" {
   type        = string
   description = "Address of a CME Server"
-  default     = "127.0.0.1"
+  default     = null
+}
+
+variable "i2004_addr" {
+  type        = string
+  description = "Address of a Nortel i2004 CONNECT server"
+  default     = null
 }
