@@ -35,6 +35,12 @@ network_static_interfaces:
     id: 15
     addrs:
       - 100.64.32.2/20
+  - name: media0
+    parent: bond0
+    type: vlan
+    id: 25
+    addrs:
+      - 192.0.2.2/24
 
 network_input_policy: ACCEPT
 
