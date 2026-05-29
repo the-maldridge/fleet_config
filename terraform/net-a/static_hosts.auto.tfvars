@@ -265,6 +265,12 @@ static_hosts = {
     addr = "172.16.34.8"
   }
 
+  switch0-igmp = {
+    mac    = "E0:07:1B:97:15:A0"
+    addr   = "192.0.2.4"
+    server = "media"
+  }
+
   pagepro = {
     mac    = "00:D0:5F:02:5B:C9"
     addr   = "192.0.2.5"
@@ -310,6 +316,66 @@ static_hosts = {
   bird3 = {
     mac    = "80:1f:12:37:2f:0a"
     addr   = "192.0.2.13"
+    server = "media"
+  }
+
+  pageport1 = {
+    mac    = "00:D0:5F:01:83:5C"
+    addr   = "192.0.2.20"
+    server = "media"
+  }
+
+  pageport2 = {
+    mac    = "00:D0:5F:01:83:68"
+    addr   = "192.0.2.21"
+    server = "media"
+  }
+
+  pageport3 = {
+    mac    = "00:D0:5F:01:83:8B"
+    addr   = "192.0.2.22"
+    server = "media"
+  }
+
+  pageport4 = {
+    mac    = "00:D0:5F:01:83:91"
+    addr   = "192.0.2.23"
+    server = "media"
+  }
+
+  pageport5 = {
+    mac    = "00:D0:5F:01:85:94"
+    addr   = "192.0.2.24"
+    server = "media"
+  }
+
+  pageport6 = {
+    mac    = "00:D0:5F:01:83:66"
+    addr   = "192.0.2.25"
+    server = "media"
+  }
+
+  pageport7 = {
+    mac    = "00:D0:5F:00:39:47"
+    addr   = "192.0.2.26"
+    server = "media"
+  }
+
+  pageport8 = {
+    mac    = "00:D0:5F:00:56:23"
+    addr   = "192.0.2.27"
+    server = "media"
+  }
+
+  pageport9 = {
+    mac    = "00:D0:5F:00:3C:D9"
+    addr   = "192.0.2.28"
+    server = "media"
+  }
+
+  pageport10 = {
+    mac    = "00:D0:5F:00:3E:4A"
+    addr   = "192.0.2.29"
     server = "media"
   }
 }
