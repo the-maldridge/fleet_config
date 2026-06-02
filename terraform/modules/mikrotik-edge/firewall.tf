@@ -176,7 +176,16 @@ resource "routeros_ip_firewall_filter" "permit_mgmt_to_media" {
   comment       = "permit-mgmt-to-media"
   in_interface  = routeros_interface_vlan.vlan["mgmt0"].name
   out_interface = routeros_interface_vlan.vlan["media0"].name
-  place_before  = routeros_ip_firewall_filter.permit_local_to_outbound.id
+  place_before  = routeros_ip_firewall_filter.permit_local_to_stargate.id
+}
+
+resource "routeros_ip_firewall_filter" "permit_local_to_stargate" {
+  chain             = "forward"
+  action            = "accept"
+  comment           = "permit-local-to-stargate"
+  in_interface_list = routeros_interface_list.local.name
+  out_interface     = routeros_interface_vlan.vlan["gate0"].name
+  place_before      = routeros_ip_firewall_filter.permit_local_to_outbound.id
 }
 
 resource "routeros_ip_firewall_filter" "permit_local_to_outbound" {
