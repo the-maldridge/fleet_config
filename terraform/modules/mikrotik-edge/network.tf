@@ -2,6 +2,7 @@ resource "routeros_interface_bridge" "br0" {
   name           = "br0"
   vlan_filtering = true
   frame_types    = "admit-only-vlan-tagged"
+  priority       = "0xFA0"
 }
 
 resource "routeros_interface_vlan" "vlan" {
