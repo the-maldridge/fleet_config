@@ -5,7 +5,7 @@ locals {
         for cfg in lookup(var.wifi, vlan_name, []) : [
           for band in cfg.band : {
             name     = format("%s-%s", cfg.ssid, band)
-	    ssid     = cfg.ssid
+            ssid     = cfg.ssid
             psk      = cfg.psk
             authtype = cfg.auth
             band     = band

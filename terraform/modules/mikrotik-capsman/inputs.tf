@@ -12,15 +12,15 @@ variable "wifi" {
 
 variable "networks" {
   description = "Reference to networks that are provided on this router"
-  type = map(string)
+  type        = map(string)
 }
 
 variable "interfaces" {
   description = "References to VLANs"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "bridge" {
   description = "Reference to the Bridge"
-  type = string
+  type        = string
 }
