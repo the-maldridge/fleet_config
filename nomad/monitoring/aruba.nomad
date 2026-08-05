@@ -6,9 +6,18 @@ variable "datacenter" {
 variable "targets" {
   type = list(string)
   default = [
-    "switch0", "idf01",
-    "aruba00", "aruba01", "aruba02", "aruba03", "aruba04",
-    "aruba05", "aruba06", "aruba07", "aruba08", "aruba09",
+    "switch0.sneaky.nonroutable.network",
+    "idf01.sneaky.nonroutable.network",
+    "aruba00.sneaky.nonroutable.network",
+    "aruba01.sneaky.nonroutable.network",
+    "aruba02.sneaky.nonroutable.network",
+    "aruba03.sneaky.nonroutable.network",
+    "aruba04.sneaky.nonroutable.network",
+    "aruba05.sneaky.nonroutable.network",
+    "aruba06.sneaky.nonroutable.network",
+    "aruba07.sneaky.nonroutable.network",
+    "aruba08.sneaky.nonroutable.network",
+    "aruba09.sneaky.nonroutable.network",
   ]
 }
 
@@ -40,7 +49,7 @@ job "aruba_exporter" {
       driver = "docker"
 
       config {
-        image   = "aruba_exporter:ca30cd6"
+        image   = "aruba_exporter:fc927dd"
         init    = true
         command = "/go/aruba_exporter/aruba_exporter"
         args = [
