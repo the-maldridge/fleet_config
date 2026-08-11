@@ -378,6 +378,67 @@ static_hosts = {
     addr = "172.16.34.92"
   }
 
+
+  sector00 = {
+    mac  = "d0:ea:11:55:cc:f3"
+    addr = "172.16.34.100"
+  }
+
+  sector01 = {
+    mac  = "D0:EA:11:55:AC:CE"
+    addr = "172.16.34.101"
+  }
+
+  sector02 = {
+    mac  = "D0:EA:11:55:AF:5D"
+    addr = "172.16.34.102"
+  }
+
+  sector03 = {
+    mac  = "D0:EA:11:55:AD:F4"
+    addr = "172.16.34.103"
+  }
+
+  sector04 = {
+    mac  = "D0:EA:11:55:AE:1E"
+    addr = "172.16.34.104"
+  }
+
+  sector05 = {
+    mac  = "D0:EA:11:54:6F:E6"
+    addr = "172.16.34.105"
+  }
+
+  sector06 = {
+    mac  = "D0:EA:11:55:AD:8A"
+    addr = "172.16.34.106"
+  }
+
+  sector07 = {
+    mac  = "D0:EA:11:51:B4:15"
+    addr = "172.16.34.107"
+  }
+
+  sector08 = {
+    mac  = "D0:EA:11:13:FC:31"
+    addr = "172.16.34.108"
+  }
+
+  sector09 = {
+    mac  = "D0:EA:11:51:BA:F6"
+    addr = "172.16.34.109"
+  }
+
+  sector10 = {
+    mac  = "D0:EA:11:51:BD:E7"
+    addr = "172.16.34.110"
+  }
+
+  sector11 = {
+    mac  = "D0:EA:11:14:15:11"
+    addr = "172.16.34.111"
+  }
+
   gigacast-oob = {
     mac  = "9C:6B:00:C3:9C:68"
     addr = "172.16.34.8"
