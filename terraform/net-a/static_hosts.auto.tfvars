@@ -439,6 +439,11 @@ static_hosts = {
     addr = "172.16.34.111"
   }
 
+  smoke0 = {
+    mac  = "D0:EA:11:82:72:25"
+    addr = "172.16.34.112"
+  }
+
   gigacast-oob = {
     mac  = "9C:6B:00:C3:9C:68"
     addr = "172.16.34.8"
