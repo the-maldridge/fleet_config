@@ -10,7 +10,13 @@ module "router" {
   }
   dhcp_lease_time = "3h"
 
-  additional_upstreams = {}
+  additional_upstreams = {
+    skynet0   = { id=21, description = "WiFi Downlink" }
+    att0      = { id=22, description = "AT&T LTE" }
+    starlink0 = { id=23, description = "Starlink Satelite" }
+  }
+
+  trusted_peers = ["172.23.0.0/24", "172.24.0.0/24", "172.27.0.0/16"]
 
   peer_address = "169.254.255.8/24"
   router_id    = "169.255.255.8"

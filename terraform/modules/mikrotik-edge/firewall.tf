@@ -33,6 +33,14 @@ resource "routeros_ip_firewall_addr_list" "nat_sources" {
   comment = "NAT Source Pool"
 }
 
+resource "routeros_ip_firewall_addr_list" "trusted_peers" {
+  for_each = toset(flatten([["192.168.16.0/24"], var.trusted_peers]))
+
+  list    = "trusted_peers"
+  address = each.value
+  comment = "Trusted Peer"
+}
+
 resource "routeros_ip_firewall_filter" "accept_established" {
   chain            = "input"
   action           = "accept"
@@ -126,21 +134,21 @@ resource "routeros_ip_firewall_filter" "accept_established_forward" {
 }
 
 resource "routeros_ip_firewall_filter" "permit_remotemgmt_to_mgmt" {
-  chain         = "forward"
-  action        = "accept"
-  comment       = "permit-remote-mgmt"
-  src_address   = "192.168.16.0/24"
-  out_interface = routeros_interface_vlan.vlan["mgmt0"].name
-  place_before  = routeros_ip_firewall_filter.permit_remotemgmt_to_media.id
+  chain            = "forward"
+  action           = "accept"
+  comment          = "permit-remote-mgmt"
+  src_address_list = "trusted_peers"
+  out_interface    = routeros_interface_vlan.vlan["mgmt0"].name
+  place_before     = routeros_ip_firewall_filter.permit_remotemgmt_to_media.id
 }
 
 resource "routeros_ip_firewall_filter" "permit_remotemgmt_to_media" {
-  chain         = "forward"
-  action        = "accept"
-  comment       = "permit-remote-to-media"
-  src_address   = "192.168.16.0/24"
-  out_interface = routeros_interface_vlan.vlan["media0"].name
-  place_before  = routeros_ip_firewall_filter.permit_trusted_to_untrusted.id
+  chain            = "forward"
+  action           = "accept"
+  comment          = "permit-remote-to-media"
+  src_address_list = "trusted_peers"
+  out_interface    = routeros_interface_vlan.vlan["media0"].name
+  place_before     = routeros_ip_firewall_filter.permit_trusted_to_untrusted.id
 }
 
 resource "routeros_ip_firewall_filter" "permit_trusted_to_untrusted" {

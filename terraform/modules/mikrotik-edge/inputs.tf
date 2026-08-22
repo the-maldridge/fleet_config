@@ -116,3 +116,9 @@ variable "i2004_addr" {
   description = "Address of a Nortel i2004 CONNECT server"
   default     = null
 }
+
+variable "trusted_peers" {
+  type        = list(string)
+  description = "List of peers that are trusted for access mgmt addresses"
+  default     = []
+}

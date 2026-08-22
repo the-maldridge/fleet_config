@@ -45,7 +45,7 @@ resource "routeros_interface_bridge_vlan" "br_internal" {
 resource "routeros_interface_bridge_port" "ports" {
   for_each = toset(flatten([
     ["ether1"],
-    length(data.routeros_interfaces.sfp1.interfaces)>0 ? ["sfp1"] : [],
+    length(data.routeros_interfaces.sfp1.interfaces) > 0 ? ["sfp1"] : [],
   ]))
 
   bridge    = routeros_interface_bridge.br0.name
