@@ -13,7 +13,7 @@ terraform {
 }
 
 provider "routeros" {
-  hosturl = "https://172.16.34.17"
+  hosturl = "https://172.16.34.20"
 }
 
 variable "net_config" {

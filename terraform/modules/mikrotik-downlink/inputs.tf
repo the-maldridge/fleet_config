@@ -10,6 +10,16 @@ variable "downlink_vlan" {
   default     = 21
 }
 
+variable "downlink_mode" {
+  type    = string
+  default = "station-pseudobridge"
+
+  validation {
+    condition     = contains(["station-pseudobridge", "station-pseudobridge-clone"], var.downlink_mode)
+    error_message = "must be one of 'station-pseudobridge', 'station-psuedobridge-clone'"
+  }
+}
+
 variable "network_ssid" {
   type        = string
   description = "Network SSID"

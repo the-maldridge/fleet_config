@@ -37,27 +37,3 @@ resource "routeros_interface_bridge_port" "wlan1" {
   interface = "wlan1"
   pvid      = var.downlink_vlan
 }
-
-
-// TEMPORARY
-
-resource "routeros_interface_bridge_vlan" "tmp" {
-  bridge   = routeros_interface_bridge.br0.name
-  vlan_ids = [var.downlink_vlan]
-  tagged   = ["ether1"]
-  untagged = ["wlan1"]
-}
-
-resource "routeros_interface_vlan" "tmp" {
-  interface = routeros_interface_bridge.br0.name
-  name      = "tmp0"
-  comment   = "Test Network"
-  vlan_id   = var.downlink_vlan
-}
-
-resource "routeros_ip_dhcp_client" "tmp" {
-  interface         = routeros_interface_vlan.tmp.name
-  add_default_route = "no"
-  use_peer_ntp      = false
-  use_peer_dns      = false
-}

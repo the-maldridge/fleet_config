@@ -9,9 +9,8 @@ resource "routeros_interface_wireless_security_profiles" "wireless" {
 resource "routeros_interface_wireless" "wireless" {
   depends_on       = [resource.routeros_interface_wireless_security_profiles.wireless]
   security_profile = resource.routeros_interface_wireless_security_profiles.wireless.name
-  mode             = "station-pseudobridge"
+  mode             = var.downlink_mode
   name             = "wlan1"
   ssid             = var.network_ssid
   band             = var.network_band
 }
-
