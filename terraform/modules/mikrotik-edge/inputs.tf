@@ -11,9 +11,17 @@ variable "hostname" {
 }
 
 variable "subnets" {
-  type        = map(any)
+  type = map(object({
+    cidr = string
+    limit = optional(object({
+      up   = string
+      down = string
+    }))
+  }))
   description = "Map of network to subnet"
 }
+
+output "subnets" { value = var.subnets }
 
 variable "hardware_offload" {
   type        = bool

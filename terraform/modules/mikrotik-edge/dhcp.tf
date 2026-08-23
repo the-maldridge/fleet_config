@@ -1,5 +1,5 @@
 resource "routeros_ip_pool" "pool" {
-  for_each = var.subnets
+  for_each = { for net, sub in var.subnets : net => sub.cidr }
 
   name    = each.key
   ranges  = ["${cidrhost(each.value, 2)}-${cidrhost(each.value, pow(2, (32 - split("/", each.value)[1])) - 10)}"]
@@ -46,7 +46,7 @@ resource "routeros_ip_dhcp_server" "server" {
 }
 
 resource "routeros_ip_dhcp_server_network" "network" {
-  for_each = var.subnets
+  for_each = { for net, sub in var.subnets : net => sub.cidr }
 
   address    = each.value
   comment    = format("Options for %s", upper(each.key))

@@ -127,7 +127,7 @@ resource "routeros_interface_list_member" "outbound_supplemental_upstream" {
 }
 
 resource "routeros_ip_address" "local" {
-  for_each = var.subnets
+  for_each = { for net, sub in var.subnets : net => sub.cidr }
 
   address   = format("%s/%d", cidrhost(each.value, 1), split("/", each.value)[1])
   interface = routeros_interface_vlan.vlan[format("%s0", each.key)].name

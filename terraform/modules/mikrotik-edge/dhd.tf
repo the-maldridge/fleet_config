@@ -1,6 +1,6 @@
 resource "routeros_ip_firewall_addr_list" "local" {
   list    = "local"
-  address = var.subnets["mgmt"]
+  address = var.subnets["mgmt"].cidr
   comment = "Local Networks"
 }
 

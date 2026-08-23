@@ -26,7 +26,11 @@ resource "routeros_ip_firewall_addr_list" "bogons_v4" {
 }
 
 resource "routeros_ip_firewall_addr_list" "nat_sources" {
-  for_each = toset(flatten([values(var.subnets), var.additional_nat_subnets, "169.254.250.0/24"]))
+  for_each = toset(flatten([
+    [for net in var.subnets : net.cidr],
+    var.additional_nat_subnets,
+    "169.254.250.0/24",
+  ]))
 
   list    = "nat_sources"
   address = each.value
@@ -122,6 +126,7 @@ resource "routeros_ip_firewall_filter" "fasttrack_forward" {
   connection_state = "established,related"
   comment          = "forward-fasttracked"
   hw_offload       = var.hardware_offload
+  src_address_list = "!slowpath"
   place_before     = routeros_ip_firewall_filter.accept_established_forward.id
 }
 
