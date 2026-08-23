@@ -464,4 +464,18 @@ static_hosts = {
     addr   = "192.0.2.29"
     server = "media"
   }
+
+
+
+  #######################
+  # VCFMW21 STARTS HERE #
+  #######################
+
+  geerling = {
+    mac    = "74:f9:2c:d8:77:c7"
+    addr   = "100.64.16.10"
+    server = "lan"
+
+    cname = ["geerling.vcf.", "time.vcf."]
+  }
 }
