@@ -6,6 +6,4 @@ terraform {
   }
 }
 
-provider "routeros" {
-  hosturl = "http://172.16.31.4"
-}
+provider "routeros" {}

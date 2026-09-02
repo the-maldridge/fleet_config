@@ -8,10 +8,15 @@ variable "vlans" {
   type        = map(number)
   description = "Map of VLAN IDs and names"
   default = {
-    lan  = 10
-    wan  = 20
-    mgmt = 30
-    peer = 101
+    lan      = 10
+    trust    = 15
+    wan      = 20
+    skynet   = 21
+    att      = 22
+    starlink = 23
+    media    = 25
+    mgmt     = 30
+    peer     = 101
   }
 }
 
