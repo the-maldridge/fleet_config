@@ -18,8 +18,11 @@ module "supplemental_dns" {
     "172.24.0.9"   = ["SCBGILCNAM0.shadytel"]
     "172.16.34.5"  = ["SCBGILCSDS2.shadytel"]
 
-    "172.24.9.95" = ["vaxarcade"]
+    "172.24.3.11" = ["icm"]
+    "172.24.3.12" = ["chicagotiug"]
+    "172.24.3.13" = ["veronicaexplains"]
     "172.24.9.20" = ["vaxai"]
+    "172.24.9.95" = ["vaxarcade"]
 
     "172.24.8.2" = [
       "aim.millennia",
