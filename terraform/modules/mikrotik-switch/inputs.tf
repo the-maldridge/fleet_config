@@ -20,6 +20,15 @@ variable "vlans" {
   }
 }
 
+variable "additional_vlans" {
+  type = map(object({
+    id = number
+    description = string
+  }))
+  default = {}
+  description = "Additional VLANs that should process traffic"
+}
+
 variable "trunks" {
   type        = set(string)
   description = "List of ports that should act as VLAN trunks"

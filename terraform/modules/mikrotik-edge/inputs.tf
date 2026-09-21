@@ -61,6 +61,15 @@ variable "peer_address" {
   description = "Peer interface address"
 }
 
+variable "additional_vlans" {
+  type = map(object({
+    id = number
+    description = string
+  }))
+  default = {}
+  description = "Additional VLANs that should process traffic"
+}
+
 variable "router_id" {
   type        = string
   description = "BGP Router ID"

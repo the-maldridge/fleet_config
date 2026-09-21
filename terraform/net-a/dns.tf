@@ -18,9 +18,12 @@ module "supplemental_dns" {
     "172.24.0.9"   = ["SCBGILCNAM0.shadytel"]
     "172.16.34.5"  = ["SCBGILCSDS2.shadytel"]
 
+    "172.24.0.3"  = ["page"]
     "172.24.3.11" = ["icm"]
     "172.24.3.12" = ["chicagotiug"]
     "172.24.3.13" = ["veronicaexplains"]
+    "172.24.6.71" = ["exhibit.token-ring"]
+    "172.24.6.72" = ["gamemaster.token-ring"]
     "172.24.9.20" = ["vaxai"]
     "172.24.9.95" = ["vaxarcade"]
 
@@ -31,6 +34,6 @@ module "supplemental_dns" {
       "quotewebvip-m01.blue.aol.com.",
       "charts.netscape.com.",
     ]
-    "172.24.8.3" = ["www.millennia"]
+    "172.24.8.3" = ["www.millennia", "millennia"]
   }
 }

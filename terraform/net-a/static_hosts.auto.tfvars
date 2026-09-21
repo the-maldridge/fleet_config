@@ -18,6 +18,7 @@ static_hosts = {
     mac    = "02:00:00:00:00:00"
     addr   = "100.64.16.2"
     server = "lan"
+    cname = ["speed.vcf."]
   }
 
   sneakypizza-trust = {
@@ -472,7 +473,7 @@ static_hosts = {
   #######################
 
   geerling = {
-    mac    = "74:f9:2c:d8:77:c7"
+    mac    = "74:F9:2C:D8:77:CB"
     addr   = "100.64.16.10"
     server = "lan"
 

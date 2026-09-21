@@ -22,7 +22,11 @@ resource "routeros_ip_dhcp_client" "upstream" {
 resource "routeros_interface_bridge_vlan" "br_vlan" {
   bridge = routeros_interface_bridge.br0.name
   vlan_ids = [for s in sort(formatlist("%03d",
-    flatten([routeros_interface_vlan.mgmt.vlan_id, values(var.vlans)]
+    flatten([
+      routeros_interface_vlan.mgmt.vlan_id,
+      values(var.vlans),
+      [ for vlan in var.additional_vlans : vlan.id ],
+    ]
   ))) : tonumber(s)]
   tagged  = flatten([routeros_interface_bridge.br0.name, var.trunks])
   comment = "Bridge Networks"
