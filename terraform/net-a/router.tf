@@ -10,17 +10,6 @@ module "router" {
   }
   dhcp_lease_time = "3h"
 
-  additional_upstreams = {
-    skynet0   = { id = 21, description = "WiFi Downlink" }
-    att0      = { id = 22, description = "AT&T LTE" }
-    starlink0 = { id = 23, description = "Starlink Satelite" }
-  }
-
-  additional_vlans = {
-    shadytel_mgmt = { id = 500, description = "ShadyTel MGMT" }
-    shadytel_ppp = { id = 503, description = "ShadyTel PPPoE" }
-  }
-
   trusted_peers = ["172.23.0.0/24", "172.24.0.0/24", "172.27.0.0/16"]
 
   peer_address = "169.254.255.8/24"
@@ -31,7 +20,7 @@ module "router" {
   i2004_addr = "172.16.30.5"
 
   ports = {
-    mgmt = ["ether1", "sfp-sfpplus9"]
+    mgmt = ["ether1"]
     wan  = ["sfp-sfpplus1"]
     peer = ["sfp-sfpplus2"]
   }
@@ -46,7 +35,6 @@ module "router" {
     "169.254.255.0/24",
     "172.16.29.0/24",
     "172.16.31.0/24",
-    "172.24.0.0/16",
   ]
 
   static_hosts = var.static_hosts
