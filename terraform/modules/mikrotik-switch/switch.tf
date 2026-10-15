@@ -25,8 +25,8 @@ resource "routeros_interface_bridge_vlan" "br_vlan" {
     flatten([
       routeros_interface_vlan.mgmt.vlan_id,
       values(var.vlans),
-      [ for vlan in var.additional_vlans : vlan.id ],
-    ]
+      [for vlan in var.additional_vlans : vlan.id],
+      ]
   ))) : tonumber(s)]
   tagged  = flatten([routeros_interface_bridge.br0.name, var.trunks])
   comment = "Bridge Networks"

@@ -18,7 +18,7 @@ static_hosts = {
     mac    = "02:00:00:00:00:00"
     addr   = "100.64.16.2"
     server = "lan"
-    cname = ["speed.vcf."]
+    cname  = ["speed.vcf."]
   }
 
   sneakypizza-trust = {
@@ -281,7 +281,6 @@ static_hosts = {
     addr = "172.16.34.92"
   }
 
-
   sector00 = {
     mac  = "d0:ea:11:55:cc:f3"
     addr = "172.16.34.100"
@@ -350,12 +349,6 @@ static_hosts = {
   gigacast-oob = {
     mac  = "9C:6B:00:C3:9C:68"
     addr = "172.16.34.8"
-  }
-
-  switch0-igmp = {
-    mac    = "E0:07:1B:97:15:A0"
-    addr   = "192.0.2.4"
-    server = "media"
   }
 
   pagepro = {

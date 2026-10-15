@@ -2,7 +2,7 @@ locals {
   port_config = {
     optimux1 = {
       trunks = flatten(["ether1", formatlist("sfp-sfpplus%d", [1, 2, 3, 4])])
-      ports = {}
+      ports  = {}
     }
   }
 }

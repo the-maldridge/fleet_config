@@ -1,20 +1,25 @@
+locals {
+  networks = merge({
+    lan0   = { id = 10, description = "Local Network" }
+    trust0 = { id = 15, description = "Trusted Network" }
+    wan0   = { id = 20, description = "Default Upstream" }
+    media0 = { id = 25, description = "Media Network", igmp = true }
+    mgmt0  = { id = 30, description = "Management Network" }
+    peer0  = { id = 101, description = "Peer Networks" }
+    gate0  = { id = 112, description = "Stargate" }
+  }, var.additional_vlans)
+}
+
 resource "routeros_interface_bridge" "br0" {
   name           = "br0"
   vlan_filtering = true
   frame_types    = "admit-only-vlan-tagged"
   priority       = "0xFA0"
+  igmp_snooping  = true
 }
 
 resource "routeros_interface_vlan" "vlan" {
-  for_each = merge({
-    lan0   = { id = 10, description = "Local Network" }
-    trust0 = { id = 15, description = "Trusted Network" }
-    wan0   = { id = 20, description = "Default Upstream" }
-    media0 = { id = 25, description = "Media Network" }
-    mgmt0  = { id = 30, description = "Management Network" }
-    peer0  = { id = 101, description = "Peer Networks" }
-    gate0  = { id = 112, description = "Stargate" }
-  }, var.additional_vlans)
+  for_each = local.networks
 
   interface = routeros_interface_bridge.br0.name
   name      = each.key

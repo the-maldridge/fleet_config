@@ -22,10 +22,10 @@ variable "vlans" {
 
 variable "additional_vlans" {
   type = map(object({
-    id = number
+    id          = number
     description = string
   }))
-  default = {}
+  default     = {}
   description = "Additional VLANs that should process traffic"
 }
 
