@@ -417,4 +417,46 @@ static_hosts = {
     mac  = "D4:C1:9E:8C:01:AC"
     addr = "172.16.31.106"
   }
+
+  omnicast = {
+    mac    = "a0:36:bc:58:00:92"
+    addr   = "192.0.2.7"
+    server = "media"
+  }
+
+  gigacast = {
+    mac    = "9c:6b:00:c3:93:7a"
+    addr   = "192.0.2.8"
+    server = "media"
+  }
+
+  birdkbd0 = {
+    mac    = "20:32:33:ab:1b:f1"
+    addr   = "192.0.2.9"
+    server = "media"
+  }
+
+  bird0 = {
+    mac    = "80:1F:12:F7:7E:0C"
+    addr   = "192.0.2.10"
+    server = "media"
+  }
+
+  bird1 = {
+    mac    = "80:1f:12:37:71:e9"
+    addr   = "192.0.2.11"
+    server = "media"
+  }
+
+  bird2 = {
+    mac    = "80:1f:12:37:1c:e8"
+    addr   = "192.0.2.12"
+    server = "media"
+  }
+
+  bird3 = {
+    mac    = "80:1f:12:37:2f:0a"
+    addr   = "192.0.2.13"
+    server = "media"
+  }
 }

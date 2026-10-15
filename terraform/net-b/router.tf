@@ -1,6 +1,5 @@
 module "router" {
   source           = "../modules/mikrotik-edge"
-  hardware_offload = true
 
   hostname = "edge0"
   subnets = {
