@@ -14,6 +14,7 @@ resource "routeros_routing_bgp_connection" "adjacent" {
     sneakynet = { asn = 64582, addr = "169.254.255.6" }
     minitel   = { asn = 64582, addr = "169.254.255.7" }
     net-a     = { asn = 64582, addr = "169.254.255.8" }
+    mal       = { asn = 64513, addr = "169.254.255.25" }
   }
 
   as       = 64582
