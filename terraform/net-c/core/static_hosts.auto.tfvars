@@ -19,6 +19,11 @@ static_hosts = {
     mac  = "02:1B:EF:C6:BB:C3"
   }
 
+  cap1 = {
+    mac  = "66:86:51:7A:27:1A"
+    addr = "172.16.35.10"
+  }
+
   fleet00 = {
     mac  = "e4:42:a6:19:ec:13"
     addr = "172.16.35.50"
@@ -119,4 +124,10 @@ static_hosts = {
     addr = "172.16.35.71"
   }
 
+  bri18 = {
+    mac   = "D8:C4:97:E0:E9:A0"
+    addr  = "100.64.32.10"
+    cname = ["gameday.best."]
+    server = "trust"
+  }
 }

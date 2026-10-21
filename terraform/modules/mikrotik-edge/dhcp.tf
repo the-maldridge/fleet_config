@@ -1,8 +1,10 @@
 resource "routeros_ip_pool" "pool" {
   for_each = { for net, sub in var.subnets : net => sub.cidr }
 
+  # The bottom 10 hosts are reserved for the router and statically
+  # configured devices.
   name    = each.key
-  ranges  = ["${cidrhost(each.value, 2)}-${cidrhost(each.value, pow(2, (32 - split("/", each.value)[1])) - 10)}"]
+  ranges  = ["${cidrhost(each.value, 11)}-${cidrhost(each.value, pow(2, (32 - split("/", each.value)[1])) - 10)}"]
   comment = "LAN Default IP Pool"
 }
 

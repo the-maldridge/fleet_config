@@ -11,7 +11,7 @@ variable "wifi" {
 }
 
 module "capsman" {
-  source     = "../modules/mikrotik-capsman"
+  source     = "../../modules/mikrotik-capsman"
   interfaces = [module.router.vlan_names[30]]
   wifi       = var.wifi
   networks   = module.router.vlan_names

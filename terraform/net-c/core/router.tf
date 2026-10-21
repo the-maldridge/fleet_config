@@ -1,5 +1,5 @@
 module "router" {
-  source = "../modules/mikrotik-edge"
+  source = "../../modules/mikrotik-edge"
 
   hostname = "edge0"
   subnets = {
@@ -40,7 +40,7 @@ module "router" {
 resource "macaddress" "terrastate" {}
 
 module "terrastate" {
-  source = "../modules/mikrotik-container"
+  source = "../../modules/mikrotik-container"
 
   name          = "tfstate"
   bridge        = module.router.bridge_name
