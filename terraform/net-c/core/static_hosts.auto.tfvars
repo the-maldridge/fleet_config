@@ -124,8 +124,8 @@ static_hosts = {
     addr = "172.16.35.71"
   }
 
-  bri18 = {
-    mac   = "D8:C4:97:E0:E9:A0"
+  maldridge01 = {
+    mac   = "d8:c4:97:a9:d6:7e"
     addr  = "100.64.32.10"
     cname = ["gameday.best."]
     server = "trust"
