@@ -54,3 +54,8 @@ xbps_ignore_packages:
 xbps_ignore_noextracts:
   - '/usr/lib/firmware/*'
   - '!/usr/lib/firmware/rtl_nic/rtl8168h*'
+
+nomad_volumes:
+  - name: gameday_data
+    path: /nomad/gameday
+    read_only: false
